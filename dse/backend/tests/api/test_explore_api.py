@@ -65,3 +65,16 @@ def test_exploration_lifecycle_and_summary():
         cmp_data = cmp_res.json()
         assert len(cmp_data["designs"]) == 2
         assert len(cmp_data["metrics_table"]) >= 1
+
+    # 7. Export reports
+    md_res = client.get(f"/api/runs/{run_id}/report?format=md")
+    assert md_res.status_code == 200
+    assert "Design Space Exploration" in md_res.text
+
+    csv_res = client.get(f"/api/runs/{run_id}/report?format=csv")
+    assert csv_res.status_code == 200
+    assert "latency_ms" in csv_res.text
+
+    json_res = client.get(f"/api/runs/{run_id}/report?format=json")
+    assert json_res.status_code == 200
+    assert json_res.json()["run_id"] == run_id

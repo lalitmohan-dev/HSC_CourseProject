@@ -257,3 +257,29 @@ class JsonFileProjectRepository(ProjectRepository):
             ),
         )
         self.save_project(walkthrough_project)
+
+        # 3. Seed Simple CPU/FPGA Project (Section 9)
+        from app.ir.presets import lower_simple_preset, SimpleTaskConfig, SimplePlatformConfig
+        simple_tasks = [
+            SimpleTaskConfig(id="TaskA", name="Data Input", sw_cycles=3_000_000, hw_cycles=1_000_000, hw_luts=200, hw_dsps=1, memory_kb=4.0),
+            SimpleTaskConfig(id="TaskB", name="Core Processing", sw_cycles=5_000_000, hw_cycles=800_000, hw_luts=800, hw_dsps=4, memory_kb=8.0),
+            SimpleTaskConfig(id="TaskC", name="Output Format", sw_cycles=2_000_000, hw_cycles=None, memory_kb=4.0),
+        ]
+        simple_edges = [
+            DataEdge(source_id="TaskA", destination_id="TaskB", data_kb=4.0),
+            DataEdge(source_id="TaskB", destination_id="TaskC", data_kb=4.0),
+        ]
+        simple_platform = SimplePlatformConfig(
+            cpu_mhz=1000.0,
+            fpga_mhz=250.0,
+            bus_bandwidth_mb_per_s=8.0,
+            bus_latency_us=250.0,
+        )
+        simple_proj = lower_simple_preset(
+            project_id="simple-cpu-fpga",
+            project_name="Simple CPU/FPGA Preset (Sec 9)",
+            tasks=simple_tasks,
+            edges=simple_edges,
+            platform=simple_platform,
+        )
+        self.save_project(simple_proj)

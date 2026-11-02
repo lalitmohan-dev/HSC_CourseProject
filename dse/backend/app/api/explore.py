@@ -28,6 +28,7 @@ from app.ir.lowering import lower_problem
 from app.search.runner import execute_search
 from app.search.pareto import RecommendationDetails
 from app.analysis.bottlenecks import BottleneckReport, analyze_bottlenecks
+from app.reporting.report_builder import generate_csv_report, generate_markdown_report
 from app.api.projects import get_repository
 from app.persistence.repository import ProjectRepository
 
@@ -390,3 +391,57 @@ def compare_designs(
         "designs": designs_list,
         "metrics_table": metrics_comparison,
     }
+
+
+@router.get("/runs/{run_id}/report")
+def export_run_report(
+    run_id: str,
+    format: str = Query("md", pattern="^(md|csv|json)$"),
+    repo: ProjectRepository = Depends(get_repository),
+) -> Any:
+    """Exports comprehensive run report in Markdown, CSV, or JSON format."""
+    run = RUNS_REGISTRY.get(run_id)
+    raw_data: Optional[Dict[str, Any]] = None
+    project: Optional[ProjectIR] = None
+
+    if run:
+        project = run.project
+        raw_data = {
+            "run_id": run.run_id,
+            "project_id": run.project_id,
+            "status": run.status,
+            "elapsed_seconds": round((run.finish_time or time.time()) - run.start_time, 2),
+            "evaluated_count": len(run.evaluated_candidates),
+            "pareto_count": len(run.pareto_front),
+            "recommended_design_id": run.recommended_design.id if run.recommended_design else None,
+            "recommendation_details": run.recommendation_details.model_dump() if run.recommendation_details else None,
+            "pareto_front": [p.model_dump() for p in run.pareto_front],
+            "designs": [d.model_dump() for d in run.evaluated_candidates],
+        }
+    else:
+        # Check persisted file
+        for f in Path(__file__).resolve().parent.parent.parent.parent.glob("data/projects/*.runs/*.json"):
+            if f.stem == run_id:
+                with open(f, "r", encoding="utf-8") as fp:
+                    raw_data = json.load(fp)
+                    project = repo.get_project(raw_data.get("project_id", ""))
+                break
+
+    if not raw_data or not project:
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    lowered = lower_problem(project)
+    rec_cand = run.recommended_design if run else None
+    bottlenecks = analyze_bottlenecks(lowered, rec_cand) if rec_cand else None
+
+    if format == "csv":
+        csv_str = generate_csv_report(raw_data)
+        from fastapi.responses import Response
+        return Response(content=csv_str, media_type="text/csv", headers={"Content-Disposition": f"attachment; filename=dse_report_{run_id}.csv"})
+    elif format == "json":
+        return raw_data
+    else:
+        # Markdown format
+        md_str = generate_markdown_report(project, raw_data, bottlenecks)
+        from fastapi.responses import PlainTextResponse
+        return PlainTextResponse(content=md_str, media_type="text/markdown")
