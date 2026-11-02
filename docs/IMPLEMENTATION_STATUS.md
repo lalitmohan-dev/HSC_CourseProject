@@ -1,7 +1,7 @@
 # Implementation Status — DSE Framework
 
 **Last Updated:** 2026-11-02  
-**Status:** M0 through M4 Complete, Ready for M5
+**Status:** M0 through M5 Complete, Ready for M6
 
 ---
 
@@ -53,7 +53,17 @@
     - `POST /api/projects/{id}/validate`: Validate project and return issues
     - `POST /api/projects/{id}/evaluate`: Directly evaluate a candidate design
   - Uniform JSON error responses per §12
-- **Test Suite (40 Passing Tests):**
+- **Search & Pareto Optimization (`app/search/`):**
+  - `candidate.py`: Exact combinatorial candidate count estimation and lazy generator
+  - `exhaustive.py`: Exhaustive exploration with $2^{20}$ ceiling and budget safeguards
+  - `random_search.py`: Uniform random exploration with deterministic seed reproducibility
+  - `greedy.py`: Local 1-change neighborhood search with restarts and tabu-deduplication
+  - `nsga2.py`: Genetic multi-objective optimization with constraint-dominated sorting, crossover, mutation, and crowding distance
+  - `pareto.py`: Non-dominated sorting, Pareto front extraction, min-max normalized weighted ranking, and transparent recommendation with tradeoff rationales
+  - `runner.py`: Unified `execute_search` orchestrator
+- **Test Suite (48 Passing Tests):**
+  - `tests/unit/test_search.py`: 5 tests passing (candidate count/lazy gen, exhaustive, random, greedy, NSGA-II)
+  - `tests/unit/test_pareto.py`: 3 tests passing (dominance, Pareto front, weighted recommendation)
   - `tests/api/test_projects_api.py`: 8 tests passing (CRUD, import/export, IR inspect, validate, API evaluate)
   - `tests/unit/test_health.py`: 2 tests passing
   - `tests/unit/test_ir_models.py`: 4 tests passing
@@ -81,7 +91,7 @@
 
 1. **Backend Tests:**
    - Command: `python -m pytest tests/ -v`
-   - Output: 40 passed in 0.71s
+   - Output: 48 passed in 0.66s
 2. **Backend Server:**
    - Command: `uvicorn app.main:app --port 8000`
    - Responding with `{"status": "ok", "version": "0.1.0"}` at `http://localhost:8000/api/health`
@@ -100,10 +110,10 @@
 | **M2** | Deterministic list scheduler + communication objects + golden test | **COMPLETE** |
 | **M3** | Candidate evaluator (latency, power, energy, area, memory, constraints) | **COMPLETE** |
 | **M4** | Project API and persistence (ProjectRepository, JSON storage, CRUD, presets) | **COMPLETE** |
-| **M5** | Search strategies (Exhaustive, Random, Greedy, Genetic/NSGA-II) + Pareto front | **NEXT** |
-| **M6** | Frontend shell, task graph / React Flow UI | NOT STARTED |
-| **M7** | Architecture & mapping UI + constraints/objectives forms | NOT STARTED |
-| **M8** | DSE Dashboard (Pareto scatter, Gantt schedule, radar comparison, SSE runs) | NOT STARTED |
+| **M5** | Search strategies (Exhaustive, Random, Greedy, Genetic/NSGA-II) + Pareto front | **COMPLETE** |
+| **M6** | DSE Exploration Run API & Server-Sent Events (SSE) background runs | **NEXT** |
+| **M7** | React Flow + ELK.js Graph UI (Application DAG & Architecture Graph) | NOT STARTED |
+| **M8** | DSE Dashboard (Pareto scatter, Gantt schedule, radar comparison, what-if) | NOT STARTED |
 | **M9** | End-to-end integration, presets (Simple CPU/FPGA, Golden Test, Walkthrough) | NOT STARTED |
 | **M10**| PDF/HTML Report Generation & Export | NOT STARTED |
 
@@ -111,18 +121,10 @@
 
 ## 4. Next Milestone to Execute
 
-**Milestone 5 (M5): Search and Pareto Optimization**
-
-Key deliverables:
-1. Candidate generator in `app/search/candidate.py`:
-   - Lazy/generator based cartesian product of legal mapping options for compute tasks
-   - Pruning infeasible allocations where fixed resources are violated
-2. Search strategies in `app/search/`:
-   - Exhaustive search (`exhaustive.py`) with configurable budget cap
-   - Random search (`random_search.py`) with seeded RNG
-   - Greedy heuristic search (`greedy.py`)
-   - Genetic / Multi-Objective Evolutionary Algorithm (`nsga2.py`)
-3. Pareto front and ranking in `app/search/pareto.py`:
-   - Non-dominated sorting across user-selected objectives
-   - Transparent design recommendation based on weighted normalized distance or utopia point
-4. Unit tests in `tests/unit/test_search.py` and `tests/unit/test_pareto.py`.
+**Milestone 6: Background Exploration Runs and SSE Log Streaming**
+- `POST /api/projects/{id}/explore`: Launch exploration run in background task, generate `run_id`, persist run file under `data/projects/<id>.runs/<run_id>.json`
+- `GET /api/runs/{run_id}/events`: Server-Sent Events stream emitting `log`, `progress`, and `done` events
+- `GET /api/runs/{run_id}`: Retrieve completed run summary, candidates archive, Pareto front, and recommendation
+- `GET /api/runs/{run_id}/designs`: Filterable/sortable designs list
+- `GET /api/runs/{run_id}/designs/{design_id}`: Retrieve detailed design schedule and evaluation
+- `POST /api/runs/{run_id}/cancel`: Cancel active exploration run
