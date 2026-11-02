@@ -63,6 +63,15 @@ def get_run_dir(project_id: str) -> Path:
     return base
 
 
+def _find_persisted_run(run_id: str) -> Optional[Dict[str, Any]]:
+    base = Path(__file__).resolve().parent.parent.parent.parent / "data" / "projects"
+    for f in base.glob("*.runs/*.json"):
+        if f.stem == run_id:
+            with open(f, "r", encoding="utf-8") as fp:
+                return json.load(fp)
+    return None
+
+
 def save_run_to_file(run: RunState) -> None:
     run_dir = get_run_dir(run.project_id)
     file_path = run_dir / f"{run.run_id}.json"
@@ -229,11 +238,9 @@ def get_run_summary(run_id: str) -> Dict[str, Any]:
     """Retrieves summary, Pareto front, and recommendation for an exploration run."""
     run = RUNS_REGISTRY.get(run_id)
     if not run:
-        # Check persisted run files
-        for f in Path(__file__).resolve().parent.parent.parent.parent.glob("data/projects/*.runs/*.json"):
-            if f.stem == run_id:
-                with open(f, "r", encoding="utf-8") as fp:
-                    return json.load(fp)
+        data = _find_persisted_run(run_id)
+        if data:
+            return data
         raise HTTPException(status_code=404, detail="Run not found")
 
     return {
@@ -419,13 +426,9 @@ def export_run_report(
             "designs": [d.model_dump() for d in run.evaluated_candidates],
         }
     else:
-        # Check persisted file
-        for f in Path(__file__).resolve().parent.parent.parent.parent.glob("data/projects/*.runs/*.json"):
-            if f.stem == run_id:
-                with open(f, "r", encoding="utf-8") as fp:
-                    raw_data = json.load(fp)
-                    project = repo.get_project(raw_data.get("project_id", ""))
-                break
+        raw_data = _find_persisted_run(run_id)
+        if raw_data:
+            project = repo.get_project(raw_data.get("project_id", ""))
 
     if not raw_data or not project:
         raise HTTPException(status_code=404, detail="Run not found")

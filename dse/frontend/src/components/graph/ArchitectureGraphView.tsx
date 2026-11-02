@@ -1,15 +1,9 @@
 import React, { useEffect } from 'react'
-import {
-  ReactFlow,
-  Background,
-  Controls,
-  useNodesState,
-  useEdgesState,
-} from '@xyflow/react'
+import { useNodesState, useEdgesState } from '@xyflow/react'
 import type { Node, Edge } from '@xyflow/react'
-import '@xyflow/react/dist/style.css'
 import { useAppStore } from '../../store'
 import { getElkLayout } from '../../lib/elkLayout'
+import { GraphCanvas } from './GraphCanvas'
 
 export const ArchitectureGraphView: React.FC = () => {
   const { currentProject, selectedResourceId, setSelectedResourceId } = useAppStore()
@@ -95,21 +89,13 @@ export const ArchitectureGraphView: React.FC = () => {
   }, [currentProject, selectedResourceId])
 
   return (
-    <div className="w-full h-full min-h-[500px] bg-gray-950 relative rounded-lg border border-gray-800 overflow-hidden">
-      <div className="absolute top-3 left-3 z-10 bg-gray-900/90 backdrop-blur px-3 py-1.5 rounded border border-gray-800 text-xs text-gray-400">
-        Architecture Graph · Processors (Blue), Accelerators (Purple), Buses (Amber)
-      </div>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onNodeClick={(_, node) => setSelectedResourceId(node.id)}
-        fitView
-      >
-        <Background color="#1e293b" gap={16} />
-        <Controls className="bg-gray-900 border-gray-800 text-gray-300" />
-      </ReactFlow>
-    </div>
+    <GraphCanvas
+      nodes={nodes}
+      edges={edges}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      onNodeClick={(_, node) => setSelectedResourceId(node.id)}
+      badge="Architecture Graph · Processors (Blue), Accelerators (Purple), Buses (Amber)"
+    />
   )
 }

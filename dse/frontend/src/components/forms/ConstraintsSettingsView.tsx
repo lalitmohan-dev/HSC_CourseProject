@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import { useAppStore } from '../../store'
 import type { SearchStrategy } from '../../types'
 
+type NumericConstraintKey =
+  | 'max_latency_ms'
+  | 'min_throughput_fps'
+  | 'max_allocation_cost'
+  | 'max_memory_kb'
+  | 'max_total_energy_mj'
+  | 'max_avg_power_mw'
+
 export const ConstraintsSettingsView: React.FC = () => {
   const { currentProject, updateCurrentProject, saveCurrentProject } = useAppStore()
 
@@ -10,6 +18,15 @@ export const ConstraintsSettingsView: React.FC = () => {
   const [settings, setSettings] = useState(currentProject.settings)
   const [constraints, setConstraints] = useState(currentProject.constraints)
   const [savedSuccess, setSavedSuccess] = useState(false)
+
+  const constraintFields: { key: NumericConstraintKey; label: string }[] = [
+    { key: 'max_latency_ms', label: `Max Latency (${currentProject.meta.time_unit || 'ms'})` },
+    { key: 'min_throughput_fps', label: 'Min Throughput (fps)' },
+    { key: 'max_allocation_cost', label: 'Max Allocation Cost' },
+    { key: 'max_memory_kb', label: 'Max Memory (KB)' },
+    { key: 'max_total_energy_mj', label: 'Max Energy (mJ)' },
+    { key: 'max_avg_power_mw', label: 'Max Avg Power (mW)' },
+  ]
 
   const handleSave = async () => {
     const updated = {
@@ -124,104 +141,23 @@ export const ConstraintsSettingsView: React.FC = () => {
           </h4>
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1">
-              <label className="text-xs text-gray-300 font-medium">
-                Max Latency ({currentProject.meta.time_unit || 'ms'})
-              </label>
-              <input
-                type="number"
-                placeholder="No limit"
-                value={constraints.max_latency_ms ?? ''}
-                onChange={(e) =>
-                  setConstraints({
-                    ...constraints,
-                    max_latency_ms: e.target.value ? parseFloat(e.target.value) : null,
-                  })
-                }
-                className="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-gray-200"
-              />
-            </div>
-            <div className="space-y-1">
-              <label className="text-xs text-gray-300 font-medium">Min Throughput (fps)</label>
-              <input
-                type="number"
-                placeholder="No limit"
-                value={constraints.min_throughput_fps ?? ''}
-                onChange={(e) =>
-                  setConstraints({
-                    ...constraints,
-                    min_throughput_fps: e.target.value ? parseFloat(e.target.value) : null,
-                  })
-                }
-                className="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-gray-200"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1">
-              <label className="text-xs text-gray-300 font-medium">Max Allocation Cost</label>
-              <input
-                type="number"
-                placeholder="No limit"
-                value={constraints.max_allocation_cost ?? ''}
-                onChange={(e) =>
-                  setConstraints({
-                    ...constraints,
-                    max_allocation_cost: e.target.value ? parseFloat(e.target.value) : null,
-                  })
-                }
-                className="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-gray-200"
-              />
-            </div>
-            <div className="space-y-1">
-              <label className="text-xs text-gray-300 font-medium">Max Memory (KB)</label>
-              <input
-                type="number"
-                placeholder="No limit"
-                value={constraints.max_memory_kb ?? ''}
-                onChange={(e) =>
-                  setConstraints({
-                    ...constraints,
-                    max_memory_kb: e.target.value ? parseFloat(e.target.value) : null,
-                  })
-                }
-                className="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-gray-200"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1">
-              <label className="text-xs text-gray-300 font-medium">Max Energy (mJ)</label>
-              <input
-                type="number"
-                placeholder="No limit"
-                value={constraints.max_total_energy_mj ?? ''}
-                onChange={(e) =>
-                  setConstraints({
-                    ...constraints,
-                    max_total_energy_mj: e.target.value ? parseFloat(e.target.value) : null,
-                  })
-                }
-                className="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-gray-200"
-              />
-            </div>
-            <div className="space-y-1">
-              <label className="text-xs text-gray-300 font-medium">Max Avg Power (mW)</label>
-              <input
-                type="number"
-                placeholder="No limit"
-                value={constraints.max_avg_power_mw ?? ''}
-                onChange={(e) =>
-                  setConstraints({
-                    ...constraints,
-                    max_avg_power_mw: e.target.value ? parseFloat(e.target.value) : null,
-                  })
-                }
-                className="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-gray-200"
-              />
-            </div>
+            {constraintFields.map(({ key, label }) => (
+              <div key={key} className="space-y-1">
+                <label className="text-xs text-gray-300 font-medium">{label}</label>
+                <input
+                  type="number"
+                  placeholder="No limit"
+                  value={constraints[key] ?? ''}
+                  onChange={(e) =>
+                    setConstraints({
+                      ...constraints,
+                      [key]: e.target.value ? parseFloat(e.target.value) : null,
+                    })
+                  }
+                  className="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-gray-200"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

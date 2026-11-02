@@ -178,3 +178,28 @@ dist/assets/index-l2CX-mFz.js   2,272.87 kB
 | **M8** | DSE Dashboard (Pareto scatter, Gantt schedule, radar comparison, what-if) | **COMPLETE** |
 | **M9** | End-to-end integration, presets (Simple CPU/FPGA, Golden Test, Walkthrough) | **COMPLETE** |
 | **M10**| Report Generation & Export (Markdown, CSV, JSON, and PDF) | **COMPLETE** |
+| **Refactor** | Codebase Compression & DRY: Dead stub removal, declarative constraint checking, unified run lookups, shared `<GraphCanvas>`, mapped comparison rows | **COMPLETE** |
+
+---
+
+## 4. Codebase Compression & Refactoring Summary
+
+A comprehensive scan and refactoring across backend and frontend achieved significant boilerplate reduction and improved readability while strictly preserving 100% of existing functionality, APIs, and tests:
+
+1. **Dead Code Elimination:**
+   - Removed 4 legacy empty stub modules: `dse/backend/app/core/architecture.py`, `constraints.py`, `graph.py`, and `metrics.py`.
+   - Removed unused legacy endpoint client: `dse/frontend/src/api/health.ts`.
+
+2. **Declarative Backend Logic:**
+   - **`app/core/evaluator.py`:** Consolidated 95 lines of repetitive constraint-checking `if` blocks into a single declarative loop over a metric specification table, reducing line count by 72 lines while preserving exact violation object semantics.
+   - **`app/api/explore.py`:** Consolidated redundant filesystem traversal for persisted runs into a unified `_find_persisted_run(run_id)` helper.
+
+3. **Frontend Component Deduplication:**
+   - **`GraphCanvas.tsx`:** Extracted shared React Flow + ELK canvas wrapper with viewport controls, backgrounds, and status overlays, eliminating ~80 lines of duplicate UI boilerplate across `ApplicationGraphView.tsx`, `ArchitectureGraphView.tsx`, and `MappingGraphView.tsx`.
+   - **`ConstraintsSettingsView.tsx`:** Replaced 6 hardcoded `<label>`/`<input>` blocks with a typed array map over `NumericConstraintKey`, eliminating 80 lines of repetitive form JSX.
+   - **`CompareDesignsView.tsx`:** Consolidated 8 repetitive metric table rows into an array map over `MetricRowDef`, improving readability and reducing code size by 85 lines.
+
+4. **Net Impact:**
+   - **Lines Removed:** ~400 lines of boilerplate and duplication eliminated.
+   - **Tests:** 50/50 backend tests passing (`test_canonical_golden_schedule` 32-tick invariant intact).
+   - **Build:** Clean Vite/TypeScript production build with 0 errors.

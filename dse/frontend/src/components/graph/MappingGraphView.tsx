@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react'
-import {
-  ReactFlow,
-  Background,
-  Controls,
-  useNodesState,
-  useEdgesState,
-  MarkerType,
-} from '@xyflow/react'
+import { useNodesState, useEdgesState, MarkerType } from '@xyflow/react'
 import type { Node, Edge } from '@xyflow/react'
-import '@xyflow/react/dist/style.css'
 import { useAppStore } from '../../store'
 import { getElkLayout } from '../../lib/elkLayout'
+import { GraphCanvas } from './GraphCanvas'
 
 const RESOURCE_PALETTE = ['#3b82f6', '#a855f7', '#10b981', '#f59e0b', '#ec4899', '#06b6d4']
 
@@ -90,20 +83,22 @@ export const MappingGraphView: React.FC = () => {
   }, [currentProject, selectedDesign])
 
   return (
-    <div className="w-full h-full min-h-[500px] bg-gray-950 relative rounded-lg border border-gray-800 overflow-hidden">
-      <div className="absolute top-3 left-3 z-10 bg-gray-900/90 backdrop-blur px-3 py-1.5 rounded border border-gray-800 text-xs text-gray-400 flex items-center gap-3">
-        <span>Mapping View · Active Design: <strong className="text-white">{selectedDesign?.id || 'None Selected'}</strong></span>
-        <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Local Comm (0 ms)
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Bus Route
-        </span>
-      </div>
-      <ReactFlow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} fitView>
-        <Background color="#1e293b" gap={16} />
-        <Controls className="bg-gray-900 border-gray-800 text-gray-300" />
-      </ReactFlow>
-    </div>
+    <GraphCanvas
+      nodes={nodes}
+      edges={edges}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      badge={
+        <div className="flex items-center gap-3">
+          <span>Mapping View · Active Design: <strong className="text-white">{selectedDesign?.id || 'None Selected'}</strong></span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Local Comm (0 ms)
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Bus Route
+          </span>
+        </div>
+      }
+    />
   )
 }

@@ -201,100 +201,28 @@ def evaluate_candidate(
 
     # 7. Check Constraints & Capacity Limits
     constraints = lowered.project.constraints
+    actual_power_mw = (avg_power_w * 1000.0) if avg_power_w is not None else None
 
-    if constraints.max_latency_ms is not None:
-        if latency > constraints.max_latency_ms:
-            violations.append(
-                ConstraintViolation(
-                    metric="latency",
-                    limit=constraints.max_latency_ms,
-                    actual=latency,
-                    unit=time_unit,
-                )
-            )
+    checks = [
+        ("latency", constraints.max_latency_ms, latency, time_unit, False),
+        ("throughput", constraints.min_throughput_fps, throughput_fps, "fps", True),
+        ("energy", constraints.max_total_energy_mj, total_energy_mj, "mJ", False),
+        ("avg_power", constraints.max_avg_power_mw, actual_power_mw, "mW", False),
+        ("allocation_cost", constraints.max_allocation_cost, allocation_cost, "cost", False),
+        ("memory", constraints.max_memory_kb, declared_memory_kb, "KB", False),
+    ]
 
-    if constraints.min_throughput_fps is not None:
-        if throughput_fps is None:
-            violations.append(
-                ConstraintViolation(
-                    metric="throughput",
-                    limit=constraints.min_throughput_fps,
-                    actual=0.0,
-                    unit="fps",
+    for metric, limit, actual, unit, is_min in checks:
+        if limit is not None:
+            if actual is None or (actual < limit if is_min else actual > limit):
+                violations.append(
+                    ConstraintViolation(
+                        metric=metric,
+                        limit=limit,
+                        actual=(0.0 if is_min else float("inf")) if actual is None else actual,
+                        unit=unit,
+                    )
                 )
-            )
-        elif throughput_fps < constraints.min_throughput_fps:
-            violations.append(
-                ConstraintViolation(
-                    metric="throughput",
-                    limit=constraints.min_throughput_fps,
-                    actual=throughput_fps,
-                    unit="fps",
-                )
-            )
-
-    if constraints.max_total_energy_mj is not None:
-        if total_energy_mj is None:
-            violations.append(
-                ConstraintViolation(
-                    metric="energy",
-                    limit=constraints.max_total_energy_mj,
-                    actual=float("inf"),
-                    unit="mJ",
-                )
-            )
-        elif total_energy_mj > constraints.max_total_energy_mj:
-            violations.append(
-                ConstraintViolation(
-                    metric="energy",
-                    limit=constraints.max_total_energy_mj,
-                    actual=total_energy_mj,
-                    unit="mJ",
-                )
-            )
-
-    if constraints.max_avg_power_mw is not None:
-        actual_power_mw = (avg_power_w * 1000.0) if avg_power_w is not None else None
-        if actual_power_mw is None:
-            violations.append(
-                ConstraintViolation(
-                    metric="avg_power",
-                    limit=constraints.max_avg_power_mw,
-                    actual=float("inf"),
-                    unit="mW",
-                )
-            )
-        elif actual_power_mw > constraints.max_avg_power_mw:
-            violations.append(
-                ConstraintViolation(
-                    metric="avg_power",
-                    limit=constraints.max_avg_power_mw,
-                    actual=actual_power_mw,
-                    unit="mW",
-                )
-            )
-
-    if constraints.max_allocation_cost is not None:
-        if allocation_cost > constraints.max_allocation_cost:
-            violations.append(
-                ConstraintViolation(
-                    metric="allocation_cost",
-                    limit=constraints.max_allocation_cost,
-                    actual=allocation_cost,
-                    unit="cost",
-                )
-            )
-
-    if constraints.max_memory_kb is not None:
-        if declared_memory_kb > constraints.max_memory_kb:
-            violations.append(
-                ConstraintViolation(
-                    metric="memory",
-                    limit=constraints.max_memory_kb,
-                    actual=declared_memory_kb,
-                    unit="KB",
-                )
-            )
 
     # Check capacity limits per resource
     for res_id in candidate.allocated_resources:
