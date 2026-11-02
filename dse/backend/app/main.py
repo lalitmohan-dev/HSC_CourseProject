@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.api.projects import router as projects_router
+from app.api.explore import router as explore_router
 
 app = FastAPI(
     title="DSE Framework",
@@ -46,6 +47,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 # All routes under /api
 app.include_router(projects_router, prefix="/api")
+app.include_router(explore_router, prefix="/api")
 
 
 @app.get("/api/health")
