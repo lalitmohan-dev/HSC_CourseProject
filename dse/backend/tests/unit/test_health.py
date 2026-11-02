@@ -12,7 +12,7 @@ def test_health_endpoint():
     assert "version" in data
 
 
-def test_list_projects_empty():
+def test_list_projects_endpoint():
     response = client.get("/api/projects")
     assert response.status_code == 200
-    assert response.json() == []
+    assert isinstance(response.json(), list)

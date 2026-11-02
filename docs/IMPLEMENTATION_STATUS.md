@@ -1,7 +1,7 @@
 # Implementation Status — DSE Framework
 
 **Last Updated:** 2026-11-02  
-**Status:** M0, M1, M2, and M3 Complete, Ready for M4
+**Status:** M0 through M4 Complete, Ready for M5
 
 ---
 
@@ -11,7 +11,7 @@
 - Git repository with comprehensive `.gitignore` handling Python cache, Node modules, build artifacts
 - `docker-compose.yml` for backend (FastAPI, port 8000) and frontend (Vite, port 5173)
 - `docs/DECISIONS.md` documenting architecture decisions D1–D8 and implementation choices I1–I2
-- Data persistence folder `dse/data/projects/` with `.gitkeep`
+- Data persistence folder `dse/data/projects/` storing JSON projects with default canonical presets seeded
 
 ### Backend (`dse/backend`)
 - Python 3.11+ environment with `pyproject.toml`
@@ -38,7 +38,23 @@
   - Abstract time unit awareness (Decision D7, §5.4)
   - Area, memory footprint, bus bandwidth usage
   - Multi-dimensional capacity and user constraint checking with detailed violation objects
-- **Test Suite (32 Passing Unit Tests):**
+- **Persistence & REST API (`app/persistence/`, `app/api/`):**
+  - `ProjectRepository` abstract base class and `JsonFileProjectRepository` implementation
+  - Auto-seeds canonical Golden Slide (Sec 7) and Synthetic Walkthrough (Sec 8) presets
+  - Complete REST API on `/api/projects`:
+    - `GET /api/projects`: List project metadata
+    - `POST /api/projects`: Create project
+    - `GET /api/projects/{id}`: Read project
+    - `PUT /api/projects/{id}`: Update project
+    - `DELETE /api/projects/{id}`: Delete project
+    - `POST /api/projects/import`: Import and validate JSON
+    - `GET /api/projects/{id}/export`: Export project JSON
+    - `GET /api/projects/{id}/ir`: Inspect lowered IR and debug objects
+    - `POST /api/projects/{id}/validate`: Validate project and return issues
+    - `POST /api/projects/{id}/evaluate`: Directly evaluate a candidate design
+  - Uniform JSON error responses per §12
+- **Test Suite (40 Passing Tests):**
+  - `tests/api/test_projects_api.py`: 8 tests passing (CRUD, import/export, IR inspect, validate, API evaluate)
   - `tests/unit/test_health.py`: 2 tests passing
   - `tests/unit/test_ir_models.py`: 4 tests passing
   - `tests/unit/test_validator.py`: 11 tests passing
@@ -65,7 +81,7 @@
 
 1. **Backend Tests:**
    - Command: `python -m pytest tests/ -v`
-   - Output: 32 passed in 0.53s
+   - Output: 40 passed in 0.71s
 2. **Backend Server:**
    - Command: `uvicorn app.main:app --port 8000`
    - Responding with `{"status": "ok", "version": "0.1.0"}` at `http://localhost:8000/api/health`
@@ -83,8 +99,8 @@
 | **M1** | Canonical IR Pydantic models, graph validation, communication lowering | **COMPLETE** |
 | **M2** | Deterministic list scheduler + communication objects + golden test | **COMPLETE** |
 | **M3** | Candidate evaluator (latency, power, energy, area, memory, constraints) | **COMPLETE** |
-| **M4** | Project API and persistence (ProjectRepository, JSON storage, CRUD, presets) | **NEXT** |
-| **M5** | Search strategies (Exhaustive, Random, Greedy, Genetic/NSGA-II) + Pareto front | NOT STARTED |
+| **M4** | Project API and persistence (ProjectRepository, JSON storage, CRUD, presets) | **COMPLETE** |
+| **M5** | Search strategies (Exhaustive, Random, Greedy, Genetic/NSGA-II) + Pareto front | **NEXT** |
 | **M6** | Frontend shell, task graph / React Flow UI | NOT STARTED |
 | **M7** | Architecture & mapping UI + constraints/objectives forms | NOT STARTED |
 | **M8** | DSE Dashboard (Pareto scatter, Gantt schedule, radar comparison, SSE runs) | NOT STARTED |
@@ -95,19 +111,18 @@
 
 ## 4. Next Milestone to Execute
 
-**Milestone 4 (M4): Project API and Persistence**
+**Milestone 5 (M5): Search and Pareto Optimization**
 
 Key deliverables:
-1. `ProjectRepository` interface and JSON file repository in `app/persistence/repository.py`:
-   - Store projects under `data/projects/<id>.json`
-   - Provide CRUD operations: create, read, update, delete, list
-   - Seed default presets (Golden Test, Walkthrough, Simple CPU/FPGA)
-2. FastAPI REST endpoints in `app/api/projects.py`:
-   - `GET /api/projects`: list all projects
-   - `POST /api/projects`: create new project
-   - `GET /api/projects/{id}`: get project by ID
-   - `PUT /api/projects/{id}`: update project by ID
-   - `DELETE /api/projects/{id}`: delete project
-   - `POST /api/projects/{id}/validate`: validate project IR and return validation errors/warnings
-   - `POST /api/projects/{id}/evaluate`: directly evaluate candidate design / current mapping
-3. Unit and API integration tests in `tests/api/test_projects_api.py`.
+1. Candidate generator in `app/search/candidate.py`:
+   - Lazy/generator based cartesian product of legal mapping options for compute tasks
+   - Pruning infeasible allocations where fixed resources are violated
+2. Search strategies in `app/search/`:
+   - Exhaustive search (`exhaustive.py`) with configurable budget cap
+   - Random search (`random_search.py`) with seeded RNG
+   - Greedy heuristic search (`greedy.py`)
+   - Genetic / Multi-Objective Evolutionary Algorithm (`nsga2.py`)
+3. Pareto front and ranking in `app/search/pareto.py`:
+   - Non-dominated sorting across user-selected objectives
+   - Transparent design recommendation based on weighted normalized distance or utopia point
+4. Unit tests in `tests/unit/test_search.py` and `tests/unit/test_pareto.py`.
