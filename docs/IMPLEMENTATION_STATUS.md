@@ -177,7 +177,7 @@ dist/assets/index-l2CX-mFz.js   2,272.87 kB
 | **M7** | React Flow + ELK.js Graph UI (Application DAG & Architecture Graph) | **COMPLETE** |
 | **M8** | DSE Dashboard (Pareto scatter, Gantt schedule, radar comparison, what-if) | **COMPLETE** |
 | **M9** | End-to-end integration, presets (Simple CPU/FPGA, Golden Test, Walkthrough) | **COMPLETE** |
-| **M10**| Report Generation & Export (Markdown, CSV, JSON, and PDF) | **COMPLETE** |
+| **M10**| Report Generation & Export (Markdown, CSV, JSON) | **COMPLETE** |
 | **Refactor** | Codebase Compression & DRY: Dead stub removal, declarative constraint checking, unified run lookups, shared `<GraphCanvas>`, mapped comparison rows | **COMPLETE** |
 
 ---

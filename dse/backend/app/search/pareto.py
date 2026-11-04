@@ -190,8 +190,14 @@ def recommend_design(
     ]
     if best_ev:
         rationale_parts.append(
-            f"Latency: {best_ev.latency_ms:.2f} ms (ticks), Allocation Cost: {best_ev.allocation_cost:.1f}."
+            f"Latency: {best_ev.latency_ms:.2f} (project time unit), Allocation Cost: {best_ev.allocation_cost:.1f}."
         )
+        if not best_ev.feasible:
+            rationale_parts.insert(
+                0,
+                "WARNING: no feasible design exists under the current constraints; "
+                "this is the least-violating fallback, not a feasible recommendation.",
+            )
 
     tradeoffs = []
     for other in sorted_pareto[1:4]:

@@ -119,11 +119,8 @@ def lower_simple_preset(
                 static_power_mw=0.0,  # Included in fabric
                 clock_mhz=platform.fpga_mhz,
                 max_parallel=1,
-                area={
-                    "luts": t.hw_luts,
-                    "dsps": t.hw_dsps,
-                    "bram": t.hw_bram,
-                },
+                # Area is carried only by the mapping option's `usage` (counted once
+                # by the evaluator and enforced by the FPGA_Fabric capacity group).
             )
             resources.append(acc)
 

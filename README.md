@@ -43,6 +43,10 @@ A full-stack web application and analytical design-space exploration (DSE) frame
 
 ---
 
+See `docs/MODEL_LIMITATIONS.md` for exact model semantics, limitations and the verification record.
+
+---
+
 ## 3. Quick Start
 
 ### Prerequisites
@@ -81,7 +85,7 @@ docker-compose up --build
 cd dse/backend
 python -m pytest tests/ -v
 ```
-All 50 unit and API integration tests will run and pass, including:
+All 53 unit and API integration tests will run and pass, including:
 - Health and Projects REST API tests (`tests/api/test_projects_api.py`)
 - Exploration lifecycle and SSE stream tests (`tests/api/test_explore_api.py`)
 - Canonical Golden Test verifying 32 ticks latency (`tests/unit/test_golden_scheduler.py`)
