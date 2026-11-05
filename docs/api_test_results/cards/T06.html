@@ -1,0 +1,96 @@
+<!doctype html><meta charset=utf-8><style>
+body{font:14px Segoe UI,Arial;margin:0;padding:20px;background:#f6f8fa;color:#1f2328}
+.h{display:flex;justify-content:space-between;align-items:center}
+.v{background:#1a7f37;color:#fff;padding:4px 12px;border-radius:6px;font-weight:700}
+pre{background:#fff;border:1px solid #d0d7de;border-radius:6px;padding:10px;white-space:pre-wrap;word-break:break-all;font:12px Consolas,monospace;margin:4px 0 12px}
+.m{font-weight:700;color:#0969da} small{color:#57606a}</style>
+<div class=h><h2>T06 &middot; Update persisted (re-read)</h2><span class=v>PASS</span></div>
+<small>2 CRUD &middot; 2026-11-05 17:20:22</small>
+<p><span class=m>GET</span> <code>http://localhost:8000/api/projects/fb44e0b9</code></p>
+<b>Request body</b><pre>(none)</pre>
+<b>Expected</b><pre>200, description = &#x27;Updated description&#x27;</pre>
+<b>Actual: HTTP 200</b>
+<pre>{
+  &quot;schema_version&quot;: 2,
+  &quot;meta&quot;: {
+    &quot;id&quot;: &quot;fb44e0b9&quot;,
+    &quot;name&quot;: &quot;CRUD Test&quot;,
+    &quot;description&quot;: &quot;Updated description&quot;,
+    &quot;time_unit&quot;: &quot;ms&quot;,
+    &quot;created_at&quot;: &quot;2026-11-05T11:50:22.562530+00:00&quot;,
+    &quot;updated_at&quot;: &quot;2026-11-05T11:50:22.596016+00:00&quot;,
+    &quot;display&quot;: {}
+  },
+  &quot;problem&quot;: {
+    &quot;nodes&quot;: [
+      {
+        &quot;id&quot;: &quot;N1&quot;,
+        &quot;name&quot;: &quot;Node 1&quot;,
+        &quot;op_type&quot;: &quot;compute&quot;,
+        &quot;input_kb&quot;: 0.0,
+        &quot;output_kb&quot;: 0.0,
+        &quot;memory_kb&quot;: 0.0,
+        &quot;fixed_resource_id&quot;: null,
+        &quot;notes&quot;: null
+      }
+    ],
+    &quot;edges&quot;: []
+  },
+  &quot;architecture&quot;: {
+    &quot;resources&quot;: [
+      {
+        &quot;id&quot;: &quot;R1&quot;,
+        &quot;name&quot;: &quot;Res 1&quot;,
+        &quot;kind&quot;: &quot;processor&quot;,
+        &quot;mandatory&quot;: true,
+        &quot;allocation_cost&quot;: 0.0,
+        &quot;static_power_mw&quot;: null,
+        &quot;clock_mhz&quot;: null,
+        &quot;max_parallel&quot;: 1,
+        &quot;capacity&quot;: {},
+        &quot;area&quot;: {},
+        &quot;connects&quot;: [],
+        &quot;bandwidth_mb_per_s&quot;: null,
+        &quot;setup_latency_ms&quot;: 0.0,
+        &quot;power_mw&quot;: null
+      }
+    ],
+    &quot;capacity_groups&quot;: []
+  },
+  &quot;mapping&quot;: {
+    &quot;options&quot;: [
+      {
+        &quot;node_id&quot;: &quot;N1&quot;,
+        &quot;resource_id&quot;: &quot;R1&quot;,
+        &quot;execution_time_ms&quot;: 5.0,
+        &quot;execution_cycles&quot;: null,
+        &quot;active_power_mw&quot;: null,
+        &quot;usage&quot;: {}
+      }
+    ]
+  },
+  &quot;constraints&quot;: {
+    &quot;max_latency_ms&quot;: null,
+    &quot;min_throughput_fps&quot;: null,
+    &quot;max_total_energy_mj&quot;: null,
+    &quot;max_avg_power_mw&quot;: null,
+    &quot;max_allocation_cost&quot;: null,
+    &quot;max_area&quot;: {},
+    &quot;max_memory_kb&quot;: null
+  },
+  &quot;objectives&quot;: {
+    &quot;primary&quot;: &quot;latency&quot;,
+    &quot;names&quot;: [
+      &quot;latency&quot;,
+      &quot;allocation_cost&quot;
+    ],
+    &quot;weights&quot;: {}
+  },
+  &quot;settings&quot;: {
+    &quot;strategy&quot;: &quot;exhaustive&quot;,
+    &quot;priority_policy&quot;: &quot;default&quot;,
+    &quot;explicit_priorities&quot;: [],
+    &quot;pipelined&quot;: false,
+    &quot;budget_evaluations&quot;: 1000,
+    
+... (truncated)</pre>
