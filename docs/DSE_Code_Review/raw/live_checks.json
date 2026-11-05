@@ -1,0 +1,268 @@
+[
+  {
+    "name": "health",
+    "passed": true,
+    "detail": {
+      "status": "ok",
+      "version": "0.1.0"
+    }
+  },
+  {
+    "name": "seeded_projects",
+    "passed": true,
+    "detail": [
+      "audit-load",
+      "simple-cpu-fpga",
+      "synthetic-walkthrough",
+      "golden-slide"
+    ]
+  },
+  {
+    "name": "golden-slide_validate",
+    "passed": true,
+    "detail": {
+      "is_valid": true,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "name": "golden-slide_explore",
+    "passed": true,
+    "detail": {
+      "status": "completed",
+      "designs": 1,
+      "latencies": [
+        32.0
+      ]
+    }
+  },
+  {
+    "name": "golden-slide_bottlenecks",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "latency": 32.0
+    }
+  },
+  {
+    "name": "golden-slide_export_md",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 2770
+    }
+  },
+  {
+    "name": "golden-slide_export_csv",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 188
+    }
+  },
+  {
+    "name": "golden-slide_export_json",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 4588
+    }
+  },
+  {
+    "name": "synthetic-walkthrough_validate",
+    "passed": true,
+    "detail": {
+      "is_valid": true,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "name": "synthetic-walkthrough_explore",
+    "passed": true,
+    "detail": {
+      "status": "completed",
+      "designs": 2,
+      "latencies": [
+        8.5,
+        10.0
+      ]
+    }
+  },
+  {
+    "name": "synthetic-walkthrough_bottlenecks",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "latency": 8.5
+    }
+  },
+  {
+    "name": "synthetic-walkthrough_export_md",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 2960
+    }
+  },
+  {
+    "name": "synthetic-walkthrough_export_csv",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 318
+    }
+  },
+  {
+    "name": "synthetic-walkthrough_export_json",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 7128
+    }
+  },
+  {
+    "name": "simple-cpu-fpga_validate",
+    "passed": true,
+    "detail": {
+      "is_valid": true,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "name": "simple-cpu-fpga_explore",
+    "passed": true,
+    "detail": {
+      "status": "completed",
+      "designs": 4,
+      "latencies": [
+        9.7,
+        10.0,
+        10.7,
+        11.75
+      ]
+    }
+  },
+  {
+    "name": "simple-cpu-fpga_bottlenecks",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "latency": 9.7
+    }
+  },
+  {
+    "name": "simple-cpu-fpga_export_md",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 3255
+    }
+  },
+  {
+    "name": "simple-cpu-fpga_export_csv",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 530
+    }
+  },
+  {
+    "name": "simple-cpu-fpga_export_json",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 11665
+    }
+  },
+  {
+    "name": "sse_completed_run_replay",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "done_events": 1,
+      "log_events": 14
+    }
+  },
+  {
+    "name": "compare_two",
+    "passed": true,
+    "detail": [
+      {
+        "metric": "latency_ms",
+        "design_0001": 8.5,
+        "design_0002": 10.0
+      },
+      {
+        "metric": "allocation_cost",
+        "design_0001": 35.0,
+        "design_0002": 10.0
+      },
+      {
+        "metric": "energy_mj",
+        "design_0001": 14.025,
+        "design_0002": 18.7
+      },
+      {
+        "metric": "avg_power_w",
+        "design_0001": 1.6500000000000001,
+        "design_0002": 1.8699999999999999
+      }
+    ]
+  },
+  {
+    "name": "pagination",
+    "passed": true,
+    "detail": 2
+  },
+  {
+    "name": "unknown_project_404",
+    "passed": true,
+    "detail": 404
+  },
+  {
+    "name": "unsupported_export_422",
+    "passed": true,
+    "detail": 422
+  },
+  {
+    "name": "frontend_http",
+    "passed": true,
+    "detail": {
+      "status": 200,
+      "bytes": 615
+    }
+  },
+  {
+    "name": "frontend_api_proxy",
+    "passed": true,
+    "detail": {
+      "status": "ok",
+      "version": "0.1.0"
+    }
+  },
+  {
+    "name": "impossible_deadline_fallback",
+    "passed": true,
+    "detail": {
+      "feasible": false,
+      "rationale": "WARNING: no feasible design exists under the current constraints; this is the least-violating fallback, not a feasible recommendation. Design 'design_0001' achieves the optimal weighted balance score of 0.500 across objectives latency, allocation_cost. Latency: 8.50 (project time unit), Allocation Cost: 35.0."
+    }
+  },
+  {
+    "name": "cancel_interrupts_active_search",
+    "passed": false,
+    "detail": {
+      "start_ack_seconds": 0.0035,
+      "cancel_response_seconds": 1.8695,
+      "final_status": "completed",
+      "evaluated": 3000,
+      "cancel_response": {
+        "run_id": "run_af155989",
+        "status": "cancelling"
+      }
+    }
+  }
+]

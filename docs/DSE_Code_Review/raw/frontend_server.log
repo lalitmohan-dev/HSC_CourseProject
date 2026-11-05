@@ -1,0 +1,28 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> frontend@0.0.0 dev
+> vite --host 0.0.0.0
+
+node:internal/errors:543
+      throw error;
+      ^
+
+SystemError [ERR_SYSTEM_ERROR]: A system error occurred: uv_interface_addresses returned Unknown system error 1 (Unknown system error 1)
+    at Object.networkInterfaces (node:os:218:16)
+    at resolveServerUrls (file:///workspace/scratch/0955ab276a86/repo/dse/frontend/node_modules/vite/dist/node/chunks/node.js:2670:27)
+    at Server.<anonymous> (file:///workspace/scratch/0955ab276a86/repo/dse/frontend/node_modules/vite/dist/node/chunks/node.js:24931:27)
+    at Server.emit (node:events:526:24)
+    at emitListeningNT (node:net:2485:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+  code: 'ERR_SYSTEM_ERROR',
+  info: {
+    errno: 1,
+    code: 'Unknown system error 1',
+    message: 'Unknown system error 1',
+    syscall: 'uv_interface_addresses'
+  },
+  errno: [Getter/Setter],
+  syscall: [Getter/Setter]
+}
+
+Node.js v24.22.1

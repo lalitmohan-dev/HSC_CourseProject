@@ -1,0 +1,2 @@
+id,feasible,latency_ms,allocation_cost,energy_mj,avg_power_w,throughput_fps,bindings
+design_0001,1,32.0,0.0,,,,"{""V1"": ""RISC"", ""V2"": ""RISC"", ""V3"": ""RISC"", ""V4"": ""HWM1""}"

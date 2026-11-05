@@ -1,0 +1,139 @@
+- complementary:
+  - generic: DSE FRAMEWORK
+  - generic: HW/SW Co-Design v2.0
+  - navigation:
+    - button "Dashboard":
+      - generic: Dashboard
+    - button "Application Model":
+      - generic: Application Model
+    - button "Architecture / Platform":
+      - generic: Architecture / Platform
+    - button "Mapping & Binding":
+      - generic: Mapping & Binding
+    - button "Constraints & Search":
+      - generic: Constraints & Search
+    - button "Pareto & Results":
+      - generic: Pareto & Results
+    - button "Schedule (Gantt)":
+      - generic: Schedule (Gantt)
+    - button "Bottlenecks":
+      - generic: Bottlenecks
+    - button "Compare Designs":
+      - generic: Compare Designs
+  - generic: System-Level Synthesis Engine
+- banner:
+  - generic: "Project:"
+  - combobox:
+    - option "Synthetic Walkthrough (Sec 8) (audit-load)"
+    - option "Simple CPU/FPGA Preset (Sec 9) (simple-cpu-fpga)"
+    - option "Synthetic Walkthrough (Sec 8) (synthetic-walkthrough)" [selected]
+    - option "Canonical Golden Slide (Sec 7) (golden-slide)"
+  - generic: Valid DAG
+  - button "Save":
+    - generic: Save
+  - button "Run DSE":
+    - generic: Run DSE
+- main:
+  - heading "1. Project Configuration" [level=3]
+  - paragraph: 3-stage pipeline (T1 -> T2 -> T3) comparing all-SW with HW accelerated T2
+  - generic: "Time Unit:"
+  - generic: ms
+  - generic: "Compute Tasks:"
+  - generic: "3"
+  - generic: "Dependencies:"
+  - generic: "2"
+  - generic: "Resources:"
+  - generic: "3"
+  - generic: "Active Strategy:"
+  - generic: exhaustive
+  - button "Edit Model"
+  - button "Settings"
+  - heading "2. Task Precedence Graph" [level=3]
+  - button "Full Screen"
+  - generic: Application Problem Graph (DAG) · Click task to inspect
+  - application:
+    - generic: T1
+    - generic: Ingest
+    - generic: "In/Out: 0/0 KB"
+    - generic: "Mem: 8 KB"
+    - generic: T2
+    - generic: Filtering
+    - generic: "In/Out: 0/0 KB"
+    - generic: "Mem: 8 KB"
+    - generic: T3
+    - generic: Aggregation
+    - generic: "In/Out: 0/0 KB"
+    - generic: "Mem: 8 KB"
+    - generic "Control Panel":
+      - button "Zoom In":
+      - button "Zoom Out":
+      - button "Fit View" [active]:
+      - button "Toggle Interactivity":
+    - link "React Flow attribution":
+      - /url: https://reactflow.dev/attribution
+      - text: React Flow
+  - heading "3. Task Inspector" [level=3]
+  - generic: T1
+  - generic: Ingest
+  - generic: "Input: 0 KB · Output: 0 KB · Mem: 8 KB"
+  - generic: Implementation Options
+  - generic: CPU
+  - generic: 3 ms
+  - heading "4. Exploration Results & Recommendation" [level=3]
+  - button "View All Results →"
+  - generic: "★ Recommended: design_0001"
+  - generic: ✓ Feasible
+  - paragraph: "Design 'design_0001' achieves the optimal weighted balance score of 0.500 across objectives latency, allocation_cost. Latency: 8.50 (project time unit), Allocation Cost: 35.0."
+  - generic: Latency
+  - generic: 8.5 ms
+  - generic: Allocation Cost
+  - generic: "35"
+  - generic: Pareto Set
+  - generic: 2 designs
+  - button "Gantt Schedule"
+  - button "Bottlenecks"
+  - generic: Exploration Run Log
+  - generic: 2 / 2 evaluated (0s)
+  - generic: 23:45:56
+  - generic: info
+  - generic: Loading application and architecture model.
+  - generic: 23:45:56
+  - generic: info
+  - generic: Validating problem graph and architecture graph.
+  - generic: 23:45:56
+  - generic: info
+  - generic: Lowering dependencies into communication objects.
+  - generic: 23:45:56
+  - generic: info
+  - generic: "Starting search strategy: exhaustive"
+  - generic: 23:45:56
+  - generic: info
+  - generic: "Exploration completed: 2 designs evaluated."
+  - generic: 23:45:56
+  - generic: info
+  - generic: "Pareto front extracted: 2 optimal designs."
+  - generic: 23:45:56
+  - generic: info
+  - generic: "Recommended design selected: design_0001"
+  - generic: 23:45:56
+  - generic: info
+  - generic: Loading application and architecture model.
+  - generic: 23:45:56
+  - generic: info
+  - generic: Validating problem graph and architecture graph.
+  - generic: 23:45:56
+  - generic: info
+  - generic: Lowering dependencies into communication objects.
+  - generic: 23:45:56
+  - generic: info
+  - generic: "Starting search strategy: exhaustive"
+  - generic: 23:45:56
+  - generic: info
+  - generic: "Exploration completed: 2 designs evaluated."
+  - generic: 23:45:56
+  - generic: info
+  - generic: "Pareto front extracted: 2 optimal designs."
+  - generic: 23:45:56
+  - generic: info
+  - generic: "Recommended design selected: design_0001"
+- generic: "5"

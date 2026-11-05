@@ -1,0 +1,175 @@
+{
+  "review_date_ist": "2026-11-05",
+  "preview_origin": "http://terminal.local:4173/",
+  "viewport_pixels": [
+    1363,
+    936
+  ],
+  "method": "Manual cloud-browser checks with visible state and genuine JPEG captures; these are not automated unit tests.",
+  "checks": [
+    {
+      "id": "B01",
+      "name": "Load application and select preset",
+      "status": "PASS",
+      "observed": "Synthetic Walkthrough loaded; Valid DAG displayed.",
+      "screenshots": [
+        "01_dashboard.jpg"
+      ]
+    },
+    {
+      "id": "B02",
+      "name": "Run synthetic exploration",
+      "status": "PASS",
+      "observed": "Two evaluated candidates; recommended 8.5 ms, cost 35.",
+      "screenshots": [
+        "01_dashboard.jpg"
+      ]
+    },
+    {
+      "id": "B03",
+      "name": "Application dependencies",
+      "status": "PASS",
+      "observed": "T1 -> T2 -> T3; both edges show 4 KB.",
+      "screenshots": [
+        "02_application.jpg"
+      ]
+    },
+    {
+      "id": "B04",
+      "name": "Platform connectivity",
+      "status": "PASS",
+      "observed": "SB connects CPU and ACC1; bus bandwidth 8 MB/s.",
+      "screenshots": [
+        "03_platform.jpg"
+      ]
+    },
+    {
+      "id": "B05",
+      "name": "Recommended binding",
+      "status": "PASS",
+      "observed": "T1/T3 on CPU, T2 on ACC1; both edges routed on bus.",
+      "screenshots": [
+        "04_mapping.jpg"
+      ]
+    },
+    {
+      "id": "B06",
+      "name": "Pareto candidates",
+      "status": "PASS",
+      "observed": "8.5 ms/cost 35 and 10 ms/cost 10 candidates appear.",
+      "screenshots": [
+        "05_pareto_results.jpg"
+      ]
+    },
+    {
+      "id": "B07",
+      "name": "Synthetic Gantt timing",
+      "status": "PASS",
+      "observed": "CPU T1 [0,3], C1 [3,3.75], T2 [3.75,4.75], C2 [4.75,5.5], T3 [5.5,8.5].",
+      "screenshots": [
+        "06_schedule.jpg"
+      ]
+    },
+    {
+      "id": "B08",
+      "name": "Bottleneck arithmetic",
+      "status": "PASS",
+      "observed": "7 ms compute, 1.5 ms communication; T2->CPU adds 1.5 ms and reduces cost by 25.",
+      "screenshots": [
+        "07_bottlenecks.jpg"
+      ]
+    },
+    {
+      "id": "B09",
+      "name": "Comparison metric rendering",
+      "status": "PASS",
+      "observed": "Default two synthetic candidates display matching metrics and bindings; arbitrary selection handled separately in B17.",
+      "screenshots": [
+        "08_compare.jpg"
+      ]
+    },
+    {
+      "id": "B10",
+      "name": "Save and restore deadline",
+      "status": "PASS",
+      "observed": "0.1 ms deadline saved, yielding infeasible results. Cleared afterward; a new run returned a feasible 8.5 ms recommendation.",
+      "screenshots": [
+        "09_constraints.jpg",
+        "10_infeasible_badge.jpg",
+        "01_dashboard.jpg"
+      ]
+    },
+    {
+      "id": "B11",
+      "name": "Impossible deadline in results table",
+      "status": "PASS",
+      "observed": "Both candidates show Infeasible (1).",
+      "screenshots": [
+        "11_infeasible_results.jpg"
+      ]
+    },
+    {
+      "id": "B12",
+      "name": "Feasible-only filter",
+      "status": "PASS",
+      "observed": "Checked filter with impossible deadline changes All Evaluated Designs (2) to (0); unchecked afterward.",
+      "screenshots": []
+    },
+    {
+      "id": "B13",
+      "name": "Dashboard feasibility truthfulness",
+      "status": "FAIL",
+      "observed": "Green Feasible badge contradicts WARNING: no feasible design exists in the same recommendation panel.",
+      "screenshots": [
+        "10_infeasible_badge.jpg",
+        "11_infeasible_results.jpg"
+      ]
+    },
+    {
+      "id": "B14",
+      "name": "Project switch clears previous results",
+      "status": "FAIL",
+      "observed": "Golden project selected while previous synthetic recommendation remains, relabelled as 8.5 ticks.",
+      "screenshots": [
+        "12_stale_project.jpg"
+      ]
+    },
+    {
+      "id": "B15",
+      "name": "Golden core schedule timing",
+      "status": "PASS",
+      "observed": "32 ticks; V6 overlaps V3; V4 [30,32]. Auxiliary local-transfer label still hard-codes ms.",
+      "screenshots": [
+        "13_golden_schedule.jpg"
+      ]
+    },
+    {
+      "id": "B16",
+      "name": "CPU/FPGA candidate metrics",
+      "status": "PASS",
+      "observed": "Four candidates at 9.7, 10, 10.7 and 11.75 ms.",
+      "screenshots": [
+        "14_cpu_fpga_results.jpg"
+      ]
+    },
+    {
+      "id": "B17",
+      "name": "Comparison follows selected IDs",
+      "status": "FAIL",
+      "observed": "Selected design_0001 and design_0002; Compare (2) opens design_0003 and design_0004 instead.",
+      "screenshots": [
+        "15_compare_selected.jpg",
+        "16_compare_wrong_designs.jpg"
+      ]
+    },
+    {
+      "id": "B18",
+      "name": "Browser CSV download content",
+      "status": "UNVERIFIED",
+      "observed": "Export CSV clicked; supported download-event wait timed out and reset the browser automation runtime. No verified download path or content; no application failure inferred.",
+      "screenshots": []
+    }
+  ],
+  "console": "The bounded application-origin error/warning query returned no entries. Browser-extension metadata errors were present in the broader log and were not attributed to application code.",
+  "cleanup": "The temporary synthetic max-latency constraint was cleared and a new feasible run was verified."
+}

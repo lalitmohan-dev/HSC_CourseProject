@@ -1,0 +1,2252 @@
+{
+  "golden-slide": {
+    "summary": {
+      "run_id": "run_6eb30ac6",
+      "project_id": "golden-slide",
+      "status": "completed",
+      "elapsed_seconds": 0.0,
+      "evaluated_count": 1,
+      "pareto_count": 1,
+      "recommended_design": {
+        "id": "design_0001",
+        "bindings": {
+          "V1": "RISC",
+          "V2": "RISC",
+          "V3": "RISC",
+          "V4": "HWM1"
+        },
+        "allocated_resources": [
+          "HWM1",
+          "RISC",
+          "SB"
+        ],
+        "routes": {
+          "V5": [],
+          "V6": [
+            "SB"
+          ],
+          "V7": [
+            "SB"
+          ]
+        },
+        "priority_order": [],
+        "evaluation": {
+          "design_id": "design_0001",
+          "feasible": true,
+          "violations": [],
+          "latency_ms": 32.0,
+          "throughput_fps": null,
+          "steady_state_ii_ms": null,
+          "energy_mj": null,
+          "avg_power_w": null,
+          "allocation_cost": 0.0,
+          "area_usage": {},
+          "memory_kb": 3.0,
+          "bus_bandwidth_usage": {},
+          "schedule": {
+            "objects": [
+              {
+                "id": "V1",
+                "name": "Task V1",
+                "resource_id": "RISC",
+                "start_time": 0.0,
+                "duration": 1.0,
+                "finish_time": 1.0,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              },
+              {
+                "id": "V5",
+                "name": "Local Comm V1->V3",
+                "resource_id": "local",
+                "start_time": 1.0,
+                "duration": 0.0,
+                "finish_time": 1.0,
+                "is_communication": true,
+                "details": {
+                  "source": "V1",
+                  "destination": "V3",
+                  "data_kb": 1.0,
+                  "local_resource": "RISC"
+                }
+              },
+              {
+                "id": "V2",
+                "name": "Task V2",
+                "resource_id": "RISC",
+                "start_time": 1.0,
+                "duration": 20.0,
+                "finish_time": 21.0,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              },
+              {
+                "id": "V6",
+                "name": "Transfer V2->V4 on SB",
+                "resource_id": "SB",
+                "start_time": 21.0,
+                "duration": 1.0,
+                "finish_time": 22.0,
+                "is_communication": true,
+                "details": {
+                  "source": "V2",
+                  "destination": "V4",
+                  "data_kb": 1.0,
+                  "route": [
+                    "SB"
+                  ]
+                }
+              },
+              {
+                "id": "V3",
+                "name": "Task V3",
+                "resource_id": "RISC",
+                "start_time": 21.0,
+                "duration": 8.0,
+                "finish_time": 29.0,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              },
+              {
+                "id": "V7",
+                "name": "Transfer V3->V4 on SB",
+                "resource_id": "SB",
+                "start_time": 29.0,
+                "duration": 1.0,
+                "finish_time": 30.0,
+                "is_communication": true,
+                "details": {
+                  "source": "V3",
+                  "destination": "V4",
+                  "data_kb": 1.0,
+                  "route": [
+                    "SB"
+                  ]
+                }
+              },
+              {
+                "id": "V4",
+                "name": "Task V4",
+                "resource_id": "HWM1",
+                "start_time": 30.0,
+                "duration": 2.0,
+                "finish_time": 32.0,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              }
+            ],
+            "latency": 32.0,
+            "resource_utilization": {
+              "HWM1": 0.0625,
+              "RISC": 0.90625,
+              "SB": 0.0625
+            },
+            "critical_path": [
+              "V1",
+              "V2",
+              "V3",
+              "V7",
+              "V4"
+            ]
+          }
+        }
+      },
+      "recommendation_details": {
+        "recommended_design_id": "design_0001",
+        "objectives_used": [
+          "latency",
+          "allocation_cost"
+        ],
+        "weights": {
+          "latency": 0.5,
+          "allocation_cost": 0.5
+        },
+        "normalized_scores": {
+          "design_0001": 0.0
+        },
+        "rationale": "Design 'design_0001' achieves the optimal weighted balance score of 0.000 across objectives latency, allocation_cost. Latency: 32.00 (project time unit), Allocation Cost: 0.0.",
+        "tradeoffs": []
+      },
+      "pareto_front": [
+        {
+          "id": "design_0001",
+          "bindings": {
+            "V1": "RISC",
+            "V2": "RISC",
+            "V3": "RISC",
+            "V4": "HWM1"
+          },
+          "allocated_resources": [
+            "HWM1",
+            "RISC",
+            "SB"
+          ],
+          "routes": {
+            "V5": [],
+            "V6": [
+              "SB"
+            ],
+            "V7": [
+              "SB"
+            ]
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0001",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 32.0,
+            "throughput_fps": null,
+            "steady_state_ii_ms": null,
+            "energy_mj": null,
+            "avg_power_w": null,
+            "allocation_cost": 0.0,
+            "area_usage": {},
+            "memory_kb": 3.0,
+            "bus_bandwidth_usage": {},
+            "schedule": {
+              "objects": [
+                {
+                  "id": "V1",
+                  "name": "Task V1",
+                  "resource_id": "RISC",
+                  "start_time": 0.0,
+                  "duration": 1.0,
+                  "finish_time": 1.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "V5",
+                  "name": "Local Comm V1->V3",
+                  "resource_id": "local",
+                  "start_time": 1.0,
+                  "duration": 0.0,
+                  "finish_time": 1.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "V1",
+                    "destination": "V3",
+                    "data_kb": 1.0,
+                    "local_resource": "RISC"
+                  }
+                },
+                {
+                  "id": "V2",
+                  "name": "Task V2",
+                  "resource_id": "RISC",
+                  "start_time": 1.0,
+                  "duration": 20.0,
+                  "finish_time": 21.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "V6",
+                  "name": "Transfer V2->V4 on SB",
+                  "resource_id": "SB",
+                  "start_time": 21.0,
+                  "duration": 1.0,
+                  "finish_time": 22.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "V2",
+                    "destination": "V4",
+                    "data_kb": 1.0,
+                    "route": [
+                      "SB"
+                    ]
+                  }
+                },
+                {
+                  "id": "V3",
+                  "name": "Task V3",
+                  "resource_id": "RISC",
+                  "start_time": 21.0,
+                  "duration": 8.0,
+                  "finish_time": 29.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "V7",
+                  "name": "Transfer V3->V4 on SB",
+                  "resource_id": "SB",
+                  "start_time": 29.0,
+                  "duration": 1.0,
+                  "finish_time": 30.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "V3",
+                    "destination": "V4",
+                    "data_kb": 1.0,
+                    "route": [
+                      "SB"
+                    ]
+                  }
+                },
+                {
+                  "id": "V4",
+                  "name": "Task V4",
+                  "resource_id": "HWM1",
+                  "start_time": 30.0,
+                  "duration": 2.0,
+                  "finish_time": 32.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 32.0,
+              "resource_utilization": {
+                "HWM1": 0.0625,
+                "RISC": 0.90625,
+                "SB": 0.0625
+              },
+              "critical_path": [
+                "V1",
+                "V2",
+                "V3",
+                "V7",
+                "V4"
+              ]
+            }
+          }
+        }
+      ],
+      "logs": [
+        {
+          "timestamp": "2026-11-04T23:08:14.018045+00:00",
+          "level": "info",
+          "message": "Loading application and architecture model."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.018066+00:00",
+          "level": "info",
+          "message": "Validating problem graph and architecture graph."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.018181+00:00",
+          "level": "info",
+          "message": "Lowering dependencies into communication objects."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.018195+00:00",
+          "level": "info",
+          "message": "Starting search strategy: exhaustive"
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.018812+00:00",
+          "level": "info",
+          "message": "Exploration completed: 1 designs evaluated."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.018822+00:00",
+          "level": "info",
+          "message": "Pareto front extracted: 1 optimal designs."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.018826+00:00",
+          "level": "info",
+          "message": "Recommended design selected: design_0001"
+        }
+      ]
+    },
+    "designs": {
+      "total": 1,
+      "page": 1,
+      "page_size": 50,
+      "items": [
+        {
+          "id": "design_0001",
+          "bindings": {
+            "V1": "RISC",
+            "V2": "RISC",
+            "V3": "RISC",
+            "V4": "HWM1"
+          },
+          "allocated_resources": [
+            "HWM1",
+            "RISC",
+            "SB"
+          ],
+          "routes": {
+            "V5": [],
+            "V6": [
+              "SB"
+            ],
+            "V7": [
+              "SB"
+            ]
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0001",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 32.0,
+            "throughput_fps": null,
+            "steady_state_ii_ms": null,
+            "energy_mj": null,
+            "avg_power_w": null,
+            "allocation_cost": 0.0,
+            "area_usage": {},
+            "memory_kb": 3.0,
+            "bus_bandwidth_usage": {},
+            "schedule": {
+              "objects": [
+                {
+                  "id": "V1",
+                  "name": "Task V1",
+                  "resource_id": "RISC",
+                  "start_time": 0.0,
+                  "duration": 1.0,
+                  "finish_time": 1.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "V5",
+                  "name": "Local Comm V1->V3",
+                  "resource_id": "local",
+                  "start_time": 1.0,
+                  "duration": 0.0,
+                  "finish_time": 1.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "V1",
+                    "destination": "V3",
+                    "data_kb": 1.0,
+                    "local_resource": "RISC"
+                  }
+                },
+                {
+                  "id": "V2",
+                  "name": "Task V2",
+                  "resource_id": "RISC",
+                  "start_time": 1.0,
+                  "duration": 20.0,
+                  "finish_time": 21.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "V6",
+                  "name": "Transfer V2->V4 on SB",
+                  "resource_id": "SB",
+                  "start_time": 21.0,
+                  "duration": 1.0,
+                  "finish_time": 22.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "V2",
+                    "destination": "V4",
+                    "data_kb": 1.0,
+                    "route": [
+                      "SB"
+                    ]
+                  }
+                },
+                {
+                  "id": "V3",
+                  "name": "Task V3",
+                  "resource_id": "RISC",
+                  "start_time": 21.0,
+                  "duration": 8.0,
+                  "finish_time": 29.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "V7",
+                  "name": "Transfer V3->V4 on SB",
+                  "resource_id": "SB",
+                  "start_time": 29.0,
+                  "duration": 1.0,
+                  "finish_time": 30.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "V3",
+                    "destination": "V4",
+                    "data_kb": 1.0,
+                    "route": [
+                      "SB"
+                    ]
+                  }
+                },
+                {
+                  "id": "V4",
+                  "name": "Task V4",
+                  "resource_id": "HWM1",
+                  "start_time": 30.0,
+                  "duration": 2.0,
+                  "finish_time": 32.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 32.0,
+              "resource_utilization": {
+                "HWM1": 0.0625,
+                "RISC": 0.90625,
+                "SB": 0.0625
+              },
+              "critical_path": [
+                "V1",
+                "V2",
+                "V3",
+                "V7",
+                "V4"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "synthetic-walkthrough": {
+    "summary": {
+      "run_id": "run_5bb8436c",
+      "project_id": "synthetic-walkthrough",
+      "status": "completed",
+      "elapsed_seconds": 0.0,
+      "evaluated_count": 2,
+      "pareto_count": 2,
+      "recommended_design": {
+        "id": "design_0001",
+        "bindings": {
+          "T1": "CPU",
+          "T2": "ACC1",
+          "T3": "CPU"
+        },
+        "allocated_resources": [
+          "ACC1",
+          "CPU",
+          "SB"
+        ],
+        "routes": {
+          "C1": [
+            "SB"
+          ],
+          "C2": [
+            "SB"
+          ]
+        },
+        "priority_order": [],
+        "evaluation": {
+          "design_id": "design_0001",
+          "feasible": true,
+          "violations": [],
+          "latency_ms": 8.5,
+          "throughput_fps": 117.6470588235294,
+          "steady_state_ii_ms": null,
+          "energy_mj": 14.025,
+          "avg_power_w": 1.6500000000000001,
+          "allocation_cost": 35.0,
+          "area_usage": {
+            "logic": 150.0
+          },
+          "memory_kb": 32.0,
+          "bus_bandwidth_usage": {
+            "SB": 0.9411764705882353
+          },
+          "schedule": {
+            "objects": [
+              {
+                "id": "T1",
+                "name": "Ingest",
+                "resource_id": "CPU",
+                "start_time": 0.0,
+                "duration": 3.0,
+                "finish_time": 3.0,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              },
+              {
+                "id": "C1",
+                "name": "Transfer T1->T2 on SB",
+                "resource_id": "SB",
+                "start_time": 3.0,
+                "duration": 0.75,
+                "finish_time": 3.75,
+                "is_communication": true,
+                "details": {
+                  "source": "T1",
+                  "destination": "T2",
+                  "data_kb": 4.0,
+                  "route": [
+                    "SB"
+                  ]
+                }
+              },
+              {
+                "id": "T2",
+                "name": "Filtering",
+                "resource_id": "ACC1",
+                "start_time": 3.75,
+                "duration": 1.0,
+                "finish_time": 4.75,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              },
+              {
+                "id": "C2",
+                "name": "Transfer T2->T3 on SB",
+                "resource_id": "SB",
+                "start_time": 4.75,
+                "duration": 0.75,
+                "finish_time": 5.5,
+                "is_communication": true,
+                "details": {
+                  "source": "T2",
+                  "destination": "T3",
+                  "data_kb": 4.0,
+                  "route": [
+                    "SB"
+                  ]
+                }
+              },
+              {
+                "id": "T3",
+                "name": "Aggregation",
+                "resource_id": "CPU",
+                "start_time": 5.5,
+                "duration": 3.0,
+                "finish_time": 8.5,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              }
+            ],
+            "latency": 8.5,
+            "resource_utilization": {
+              "ACC1": 0.11764705882352941,
+              "CPU": 0.7058823529411765,
+              "SB": 0.17647058823529413
+            },
+            "critical_path": [
+              "T1",
+              "C1",
+              "T2",
+              "C2",
+              "T3"
+            ]
+          }
+        }
+      },
+      "recommendation_details": {
+        "recommended_design_id": "design_0001",
+        "objectives_used": [
+          "latency",
+          "allocation_cost"
+        ],
+        "weights": {
+          "latency": 0.5,
+          "allocation_cost": 0.5
+        },
+        "normalized_scores": {
+          "design_0001": 0.5,
+          "design_0002": 0.5
+        },
+        "rationale": "Design 'design_0001' achieves the optimal weighted balance score of 0.500 across objectives latency, allocation_cost. Latency: 8.50 (project time unit), Allocation Cost: 35.0.",
+        "tradeoffs": [
+          "Alternative 'design_0002' is 25.0 cheaper but higher in weighted penalty."
+        ]
+      },
+      "pareto_front": [
+        {
+          "id": "design_0001",
+          "bindings": {
+            "T1": "CPU",
+            "T2": "ACC1",
+            "T3": "CPU"
+          },
+          "allocated_resources": [
+            "ACC1",
+            "CPU",
+            "SB"
+          ],
+          "routes": {
+            "C1": [
+              "SB"
+            ],
+            "C2": [
+              "SB"
+            ]
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0001",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 8.5,
+            "throughput_fps": 117.6470588235294,
+            "steady_state_ii_ms": null,
+            "energy_mj": 14.025,
+            "avg_power_w": 1.6500000000000001,
+            "allocation_cost": 35.0,
+            "area_usage": {
+              "logic": 150.0
+            },
+            "memory_kb": 32.0,
+            "bus_bandwidth_usage": {
+              "SB": 0.9411764705882353
+            },
+            "schedule": {
+              "objects": [
+                {
+                  "id": "T1",
+                  "name": "Ingest",
+                  "resource_id": "CPU",
+                  "start_time": 0.0,
+                  "duration": 3.0,
+                  "finish_time": 3.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C1",
+                  "name": "Transfer T1->T2 on SB",
+                  "resource_id": "SB",
+                  "start_time": 3.0,
+                  "duration": 0.75,
+                  "finish_time": 3.75,
+                  "is_communication": true,
+                  "details": {
+                    "source": "T1",
+                    "destination": "T2",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SB"
+                    ]
+                  }
+                },
+                {
+                  "id": "T2",
+                  "name": "Filtering",
+                  "resource_id": "ACC1",
+                  "start_time": 3.75,
+                  "duration": 1.0,
+                  "finish_time": 4.75,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C2",
+                  "name": "Transfer T2->T3 on SB",
+                  "resource_id": "SB",
+                  "start_time": 4.75,
+                  "duration": 0.75,
+                  "finish_time": 5.5,
+                  "is_communication": true,
+                  "details": {
+                    "source": "T2",
+                    "destination": "T3",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SB"
+                    ]
+                  }
+                },
+                {
+                  "id": "T3",
+                  "name": "Aggregation",
+                  "resource_id": "CPU",
+                  "start_time": 5.5,
+                  "duration": 3.0,
+                  "finish_time": 8.5,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 8.5,
+              "resource_utilization": {
+                "ACC1": 0.11764705882352941,
+                "CPU": 0.7058823529411765,
+                "SB": 0.17647058823529413
+              },
+              "critical_path": [
+                "T1",
+                "C1",
+                "T2",
+                "C2",
+                "T3"
+              ]
+            }
+          }
+        },
+        {
+          "id": "design_0002",
+          "bindings": {
+            "T1": "CPU",
+            "T2": "CPU",
+            "T3": "CPU"
+          },
+          "allocated_resources": [
+            "CPU",
+            "SB"
+          ],
+          "routes": {
+            "C1": [],
+            "C2": []
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0002",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 10.0,
+            "throughput_fps": 100.0,
+            "steady_state_ii_ms": null,
+            "energy_mj": 18.7,
+            "avg_power_w": 1.8699999999999999,
+            "allocation_cost": 10.0,
+            "area_usage": {},
+            "memory_kb": 32.0,
+            "bus_bandwidth_usage": {},
+            "schedule": {
+              "objects": [
+                {
+                  "id": "T1",
+                  "name": "Ingest",
+                  "resource_id": "CPU",
+                  "start_time": 0.0,
+                  "duration": 3.0,
+                  "finish_time": 3.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C1",
+                  "name": "Local Comm T1->T2",
+                  "resource_id": "local",
+                  "start_time": 3.0,
+                  "duration": 0.0,
+                  "finish_time": 3.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "T1",
+                    "destination": "T2",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "T2",
+                  "name": "Filtering",
+                  "resource_id": "CPU",
+                  "start_time": 3.0,
+                  "duration": 4.0,
+                  "finish_time": 7.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C2",
+                  "name": "Local Comm T2->T3",
+                  "resource_id": "local",
+                  "start_time": 7.0,
+                  "duration": 0.0,
+                  "finish_time": 7.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "T2",
+                    "destination": "T3",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "T3",
+                  "name": "Aggregation",
+                  "resource_id": "CPU",
+                  "start_time": 7.0,
+                  "duration": 3.0,
+                  "finish_time": 10.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 10.0,
+              "resource_utilization": {
+                "CPU": 1.0,
+                "SB": 0.0
+              },
+              "critical_path": [
+                "T1",
+                "C1",
+                "T2",
+                "C2",
+                "T3"
+              ]
+            }
+          }
+        }
+      ],
+      "logs": [
+        {
+          "timestamp": "2026-11-04T23:08:14.040378+00:00",
+          "level": "info",
+          "message": "Loading application and architecture model."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.040400+00:00",
+          "level": "info",
+          "message": "Validating problem graph and architecture graph."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.040490+00:00",
+          "level": "info",
+          "message": "Lowering dependencies into communication objects."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.040501+00:00",
+          "level": "info",
+          "message": "Starting search strategy: exhaustive"
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.041047+00:00",
+          "level": "info",
+          "message": "Exploration completed: 2 designs evaluated."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.041057+00:00",
+          "level": "info",
+          "message": "Pareto front extracted: 2 optimal designs."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.041062+00:00",
+          "level": "info",
+          "message": "Recommended design selected: design_0001"
+        }
+      ]
+    },
+    "designs": {
+      "total": 2,
+      "page": 1,
+      "page_size": 50,
+      "items": [
+        {
+          "id": "design_0001",
+          "bindings": {
+            "T1": "CPU",
+            "T2": "ACC1",
+            "T3": "CPU"
+          },
+          "allocated_resources": [
+            "ACC1",
+            "CPU",
+            "SB"
+          ],
+          "routes": {
+            "C1": [
+              "SB"
+            ],
+            "C2": [
+              "SB"
+            ]
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0001",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 8.5,
+            "throughput_fps": 117.6470588235294,
+            "steady_state_ii_ms": null,
+            "energy_mj": 14.025,
+            "avg_power_w": 1.6500000000000001,
+            "allocation_cost": 35.0,
+            "area_usage": {
+              "logic": 150.0
+            },
+            "memory_kb": 32.0,
+            "bus_bandwidth_usage": {
+              "SB": 0.9411764705882353
+            },
+            "schedule": {
+              "objects": [
+                {
+                  "id": "T1",
+                  "name": "Ingest",
+                  "resource_id": "CPU",
+                  "start_time": 0.0,
+                  "duration": 3.0,
+                  "finish_time": 3.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C1",
+                  "name": "Transfer T1->T2 on SB",
+                  "resource_id": "SB",
+                  "start_time": 3.0,
+                  "duration": 0.75,
+                  "finish_time": 3.75,
+                  "is_communication": true,
+                  "details": {
+                    "source": "T1",
+                    "destination": "T2",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SB"
+                    ]
+                  }
+                },
+                {
+                  "id": "T2",
+                  "name": "Filtering",
+                  "resource_id": "ACC1",
+                  "start_time": 3.75,
+                  "duration": 1.0,
+                  "finish_time": 4.75,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C2",
+                  "name": "Transfer T2->T3 on SB",
+                  "resource_id": "SB",
+                  "start_time": 4.75,
+                  "duration": 0.75,
+                  "finish_time": 5.5,
+                  "is_communication": true,
+                  "details": {
+                    "source": "T2",
+                    "destination": "T3",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SB"
+                    ]
+                  }
+                },
+                {
+                  "id": "T3",
+                  "name": "Aggregation",
+                  "resource_id": "CPU",
+                  "start_time": 5.5,
+                  "duration": 3.0,
+                  "finish_time": 8.5,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 8.5,
+              "resource_utilization": {
+                "ACC1": 0.11764705882352941,
+                "CPU": 0.7058823529411765,
+                "SB": 0.17647058823529413
+              },
+              "critical_path": [
+                "T1",
+                "C1",
+                "T2",
+                "C2",
+                "T3"
+              ]
+            }
+          }
+        },
+        {
+          "id": "design_0002",
+          "bindings": {
+            "T1": "CPU",
+            "T2": "CPU",
+            "T3": "CPU"
+          },
+          "allocated_resources": [
+            "CPU",
+            "SB"
+          ],
+          "routes": {
+            "C1": [],
+            "C2": []
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0002",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 10.0,
+            "throughput_fps": 100.0,
+            "steady_state_ii_ms": null,
+            "energy_mj": 18.7,
+            "avg_power_w": 1.8699999999999999,
+            "allocation_cost": 10.0,
+            "area_usage": {},
+            "memory_kb": 32.0,
+            "bus_bandwidth_usage": {},
+            "schedule": {
+              "objects": [
+                {
+                  "id": "T1",
+                  "name": "Ingest",
+                  "resource_id": "CPU",
+                  "start_time": 0.0,
+                  "duration": 3.0,
+                  "finish_time": 3.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C1",
+                  "name": "Local Comm T1->T2",
+                  "resource_id": "local",
+                  "start_time": 3.0,
+                  "duration": 0.0,
+                  "finish_time": 3.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "T1",
+                    "destination": "T2",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "T2",
+                  "name": "Filtering",
+                  "resource_id": "CPU",
+                  "start_time": 3.0,
+                  "duration": 4.0,
+                  "finish_time": 7.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C2",
+                  "name": "Local Comm T2->T3",
+                  "resource_id": "local",
+                  "start_time": 7.0,
+                  "duration": 0.0,
+                  "finish_time": 7.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "T2",
+                    "destination": "T3",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "T3",
+                  "name": "Aggregation",
+                  "resource_id": "CPU",
+                  "start_time": 7.0,
+                  "duration": 3.0,
+                  "finish_time": 10.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 10.0,
+              "resource_utilization": {
+                "CPU": 1.0,
+                "SB": 0.0
+              },
+              "critical_path": [
+                "T1",
+                "C1",
+                "T2",
+                "C2",
+                "T3"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "simple-cpu-fpga": {
+    "summary": {
+      "run_id": "run_d7a660d6",
+      "project_id": "simple-cpu-fpga",
+      "status": "completed",
+      "elapsed_seconds": 0.0,
+      "evaluated_count": 4,
+      "pareto_count": 2,
+      "recommended_design": {
+        "id": "design_0003",
+        "bindings": {
+          "TaskA": "CPU",
+          "TaskB": "ACC_TaskB",
+          "TaskC": "CPU"
+        },
+        "allocated_resources": [
+          "ACC_TaskB",
+          "CPU",
+          "SharedBus"
+        ],
+        "routes": {
+          "C_TaskA_TaskB": [
+            "SharedBus"
+          ],
+          "C_TaskB_TaskC": [
+            "SharedBus"
+          ]
+        },
+        "priority_order": [],
+        "evaluation": {
+          "design_id": "design_0003",
+          "feasible": true,
+          "violations": [],
+          "latency_ms": 9.7,
+          "throughput_fps": 103.09278350515464,
+          "steady_state_ii_ms": null,
+          "energy_mj": null,
+          "avg_power_w": null,
+          "allocation_cost": 15.0,
+          "area_usage": {
+            "luts": 800.0,
+            "dsps": 4.0,
+            "bram": 0.0
+          },
+          "memory_kb": 24.0,
+          "bus_bandwidth_usage": {
+            "SharedBus": 0.8247422680412372
+          },
+          "schedule": {
+            "objects": [
+              {
+                "id": "TaskA",
+                "name": "Data Input",
+                "resource_id": "CPU",
+                "start_time": 0.0,
+                "duration": 3.0,
+                "finish_time": 3.0,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              },
+              {
+                "id": "C_TaskA_TaskB",
+                "name": "Transfer TaskA->TaskB on SharedBus",
+                "resource_id": "SharedBus",
+                "start_time": 3.0,
+                "duration": 0.75,
+                "finish_time": 3.75,
+                "is_communication": true,
+                "details": {
+                  "source": "TaskA",
+                  "destination": "TaskB",
+                  "data_kb": 4.0,
+                  "route": [
+                    "SharedBus"
+                  ]
+                }
+              },
+              {
+                "id": "TaskB",
+                "name": "Core Processing",
+                "resource_id": "ACC_TaskB",
+                "start_time": 3.75,
+                "duration": 3.2,
+                "finish_time": 6.95,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              },
+              {
+                "id": "C_TaskB_TaskC",
+                "name": "Transfer TaskB->TaskC on SharedBus",
+                "resource_id": "SharedBus",
+                "start_time": 6.95,
+                "duration": 0.75,
+                "finish_time": 7.7,
+                "is_communication": true,
+                "details": {
+                  "source": "TaskB",
+                  "destination": "TaskC",
+                  "data_kb": 4.0,
+                  "route": [
+                    "SharedBus"
+                  ]
+                }
+              },
+              {
+                "id": "TaskC",
+                "name": "Output Format",
+                "resource_id": "CPU",
+                "start_time": 7.7,
+                "duration": 2.0,
+                "finish_time": 9.7,
+                "is_communication": false,
+                "details": {
+                  "op_type": "compute",
+                  "input_kb": 0.0,
+                  "output_kb": 0.0
+                }
+              }
+            ],
+            "latency": 9.7,
+            "resource_utilization": {
+              "ACC_TaskB": 0.3298969072164949,
+              "CPU": 0.5154639175257733,
+              "SharedBus": 0.15463917525773196
+            },
+            "critical_path": [
+              "TaskA",
+              "C_TaskA_TaskB",
+              "TaskB",
+              "C_TaskB_TaskC",
+              "TaskC"
+            ]
+          }
+        }
+      },
+      "recommendation_details": {
+        "recommended_design_id": "design_0003",
+        "objectives_used": [
+          "latency",
+          "allocation_cost"
+        ],
+        "weights": {
+          "latency": 0.5,
+          "allocation_cost": 0.5
+        },
+        "normalized_scores": {
+          "design_0003": 0.5,
+          "design_0004": 0.5
+        },
+        "rationale": "Design 'design_0003' achieves the optimal weighted balance score of 0.500 across objectives latency, allocation_cost. Latency: 9.70 (project time unit), Allocation Cost: 15.0.",
+        "tradeoffs": [
+          "Alternative 'design_0004' is 5.0 cheaper but higher in weighted penalty."
+        ]
+      },
+      "pareto_front": [
+        {
+          "id": "design_0003",
+          "bindings": {
+            "TaskA": "CPU",
+            "TaskB": "ACC_TaskB",
+            "TaskC": "CPU"
+          },
+          "allocated_resources": [
+            "ACC_TaskB",
+            "CPU",
+            "SharedBus"
+          ],
+          "routes": {
+            "C_TaskA_TaskB": [
+              "SharedBus"
+            ],
+            "C_TaskB_TaskC": [
+              "SharedBus"
+            ]
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0003",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 9.7,
+            "throughput_fps": 103.09278350515464,
+            "steady_state_ii_ms": null,
+            "energy_mj": null,
+            "avg_power_w": null,
+            "allocation_cost": 15.0,
+            "area_usage": {
+              "luts": 800.0,
+              "dsps": 4.0,
+              "bram": 0.0
+            },
+            "memory_kb": 24.0,
+            "bus_bandwidth_usage": {
+              "SharedBus": 0.8247422680412372
+            },
+            "schedule": {
+              "objects": [
+                {
+                  "id": "TaskA",
+                  "name": "Data Input",
+                  "resource_id": "CPU",
+                  "start_time": 0.0,
+                  "duration": 3.0,
+                  "finish_time": 3.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskA_TaskB",
+                  "name": "Transfer TaskA->TaskB on SharedBus",
+                  "resource_id": "SharedBus",
+                  "start_time": 3.0,
+                  "duration": 0.75,
+                  "finish_time": 3.75,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskA",
+                    "destination": "TaskB",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SharedBus"
+                    ]
+                  }
+                },
+                {
+                  "id": "TaskB",
+                  "name": "Core Processing",
+                  "resource_id": "ACC_TaskB",
+                  "start_time": 3.75,
+                  "duration": 3.2,
+                  "finish_time": 6.95,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskB_TaskC",
+                  "name": "Transfer TaskB->TaskC on SharedBus",
+                  "resource_id": "SharedBus",
+                  "start_time": 6.95,
+                  "duration": 0.75,
+                  "finish_time": 7.7,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskB",
+                    "destination": "TaskC",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SharedBus"
+                    ]
+                  }
+                },
+                {
+                  "id": "TaskC",
+                  "name": "Output Format",
+                  "resource_id": "CPU",
+                  "start_time": 7.7,
+                  "duration": 2.0,
+                  "finish_time": 9.7,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 9.7,
+              "resource_utilization": {
+                "ACC_TaskB": 0.3298969072164949,
+                "CPU": 0.5154639175257733,
+                "SharedBus": 0.15463917525773196
+              },
+              "critical_path": [
+                "TaskA",
+                "C_TaskA_TaskB",
+                "TaskB",
+                "C_TaskB_TaskC",
+                "TaskC"
+              ]
+            }
+          }
+        },
+        {
+          "id": "design_0004",
+          "bindings": {
+            "TaskA": "CPU",
+            "TaskB": "CPU",
+            "TaskC": "CPU"
+          },
+          "allocated_resources": [
+            "CPU",
+            "SharedBus"
+          ],
+          "routes": {
+            "C_TaskA_TaskB": [],
+            "C_TaskB_TaskC": []
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0004",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 10.0,
+            "throughput_fps": 100.0,
+            "steady_state_ii_ms": null,
+            "energy_mj": null,
+            "avg_power_w": null,
+            "allocation_cost": 10.0,
+            "area_usage": {},
+            "memory_kb": 24.0,
+            "bus_bandwidth_usage": {},
+            "schedule": {
+              "objects": [
+                {
+                  "id": "TaskA",
+                  "name": "Data Input",
+                  "resource_id": "CPU",
+                  "start_time": 0.0,
+                  "duration": 3.0,
+                  "finish_time": 3.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskA_TaskB",
+                  "name": "Local Comm TaskA->TaskB",
+                  "resource_id": "local",
+                  "start_time": 3.0,
+                  "duration": 0.0,
+                  "finish_time": 3.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskA",
+                    "destination": "TaskB",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "TaskB",
+                  "name": "Core Processing",
+                  "resource_id": "CPU",
+                  "start_time": 3.0,
+                  "duration": 5.0,
+                  "finish_time": 8.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskB_TaskC",
+                  "name": "Local Comm TaskB->TaskC",
+                  "resource_id": "local",
+                  "start_time": 8.0,
+                  "duration": 0.0,
+                  "finish_time": 8.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskB",
+                    "destination": "TaskC",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "TaskC",
+                  "name": "Output Format",
+                  "resource_id": "CPU",
+                  "start_time": 8.0,
+                  "duration": 2.0,
+                  "finish_time": 10.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 10.0,
+              "resource_utilization": {
+                "CPU": 1.0,
+                "SharedBus": 0.0
+              },
+              "critical_path": [
+                "TaskA",
+                "C_TaskA_TaskB",
+                "TaskB",
+                "C_TaskB_TaskC",
+                "TaskC"
+              ]
+            }
+          }
+        }
+      ],
+      "logs": [
+        {
+          "timestamp": "2026-11-04T23:08:14.065458+00:00",
+          "level": "info",
+          "message": "Loading application and architecture model."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.065482+00:00",
+          "level": "info",
+          "message": "Validating problem graph and architecture graph."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.065599+00:00",
+          "level": "info",
+          "message": "Lowering dependencies into communication objects."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.065610+00:00",
+          "level": "info",
+          "message": "Starting search strategy: exhaustive"
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.066519+00:00",
+          "level": "info",
+          "message": "Exploration completed: 4 designs evaluated."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.066530+00:00",
+          "level": "info",
+          "message": "Pareto front extracted: 2 optimal designs."
+        },
+        {
+          "timestamp": "2026-11-04T23:08:14.066536+00:00",
+          "level": "info",
+          "message": "Recommended design selected: design_0003"
+        }
+      ]
+    },
+    "designs": {
+      "total": 4,
+      "page": 1,
+      "page_size": 50,
+      "items": [
+        {
+          "id": "design_0003",
+          "bindings": {
+            "TaskA": "CPU",
+            "TaskB": "ACC_TaskB",
+            "TaskC": "CPU"
+          },
+          "allocated_resources": [
+            "ACC_TaskB",
+            "CPU",
+            "SharedBus"
+          ],
+          "routes": {
+            "C_TaskA_TaskB": [
+              "SharedBus"
+            ],
+            "C_TaskB_TaskC": [
+              "SharedBus"
+            ]
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0003",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 9.7,
+            "throughput_fps": 103.09278350515464,
+            "steady_state_ii_ms": null,
+            "energy_mj": null,
+            "avg_power_w": null,
+            "allocation_cost": 15.0,
+            "area_usage": {
+              "luts": 800.0,
+              "dsps": 4.0,
+              "bram": 0.0
+            },
+            "memory_kb": 24.0,
+            "bus_bandwidth_usage": {
+              "SharedBus": 0.8247422680412372
+            },
+            "schedule": {
+              "objects": [
+                {
+                  "id": "TaskA",
+                  "name": "Data Input",
+                  "resource_id": "CPU",
+                  "start_time": 0.0,
+                  "duration": 3.0,
+                  "finish_time": 3.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskA_TaskB",
+                  "name": "Transfer TaskA->TaskB on SharedBus",
+                  "resource_id": "SharedBus",
+                  "start_time": 3.0,
+                  "duration": 0.75,
+                  "finish_time": 3.75,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskA",
+                    "destination": "TaskB",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SharedBus"
+                    ]
+                  }
+                },
+                {
+                  "id": "TaskB",
+                  "name": "Core Processing",
+                  "resource_id": "ACC_TaskB",
+                  "start_time": 3.75,
+                  "duration": 3.2,
+                  "finish_time": 6.95,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskB_TaskC",
+                  "name": "Transfer TaskB->TaskC on SharedBus",
+                  "resource_id": "SharedBus",
+                  "start_time": 6.95,
+                  "duration": 0.75,
+                  "finish_time": 7.7,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskB",
+                    "destination": "TaskC",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SharedBus"
+                    ]
+                  }
+                },
+                {
+                  "id": "TaskC",
+                  "name": "Output Format",
+                  "resource_id": "CPU",
+                  "start_time": 7.7,
+                  "duration": 2.0,
+                  "finish_time": 9.7,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 9.7,
+              "resource_utilization": {
+                "ACC_TaskB": 0.3298969072164949,
+                "CPU": 0.5154639175257733,
+                "SharedBus": 0.15463917525773196
+              },
+              "critical_path": [
+                "TaskA",
+                "C_TaskA_TaskB",
+                "TaskB",
+                "C_TaskB_TaskC",
+                "TaskC"
+              ]
+            }
+          }
+        },
+        {
+          "id": "design_0004",
+          "bindings": {
+            "TaskA": "CPU",
+            "TaskB": "CPU",
+            "TaskC": "CPU"
+          },
+          "allocated_resources": [
+            "CPU",
+            "SharedBus"
+          ],
+          "routes": {
+            "C_TaskA_TaskB": [],
+            "C_TaskB_TaskC": []
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0004",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 10.0,
+            "throughput_fps": 100.0,
+            "steady_state_ii_ms": null,
+            "energy_mj": null,
+            "avg_power_w": null,
+            "allocation_cost": 10.0,
+            "area_usage": {},
+            "memory_kb": 24.0,
+            "bus_bandwidth_usage": {},
+            "schedule": {
+              "objects": [
+                {
+                  "id": "TaskA",
+                  "name": "Data Input",
+                  "resource_id": "CPU",
+                  "start_time": 0.0,
+                  "duration": 3.0,
+                  "finish_time": 3.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskA_TaskB",
+                  "name": "Local Comm TaskA->TaskB",
+                  "resource_id": "local",
+                  "start_time": 3.0,
+                  "duration": 0.0,
+                  "finish_time": 3.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskA",
+                    "destination": "TaskB",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "TaskB",
+                  "name": "Core Processing",
+                  "resource_id": "CPU",
+                  "start_time": 3.0,
+                  "duration": 5.0,
+                  "finish_time": 8.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskB_TaskC",
+                  "name": "Local Comm TaskB->TaskC",
+                  "resource_id": "local",
+                  "start_time": 8.0,
+                  "duration": 0.0,
+                  "finish_time": 8.0,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskB",
+                    "destination": "TaskC",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "TaskC",
+                  "name": "Output Format",
+                  "resource_id": "CPU",
+                  "start_time": 8.0,
+                  "duration": 2.0,
+                  "finish_time": 10.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 10.0,
+              "resource_utilization": {
+                "CPU": 1.0,
+                "SharedBus": 0.0
+              },
+              "critical_path": [
+                "TaskA",
+                "C_TaskA_TaskB",
+                "TaskB",
+                "C_TaskB_TaskC",
+                "TaskC"
+              ]
+            }
+          }
+        },
+        {
+          "id": "design_0001",
+          "bindings": {
+            "TaskA": "ACC_TaskA",
+            "TaskB": "ACC_TaskB",
+            "TaskC": "CPU"
+          },
+          "allocated_resources": [
+            "ACC_TaskA",
+            "ACC_TaskB",
+            "CPU",
+            "SharedBus"
+          ],
+          "routes": {
+            "C_TaskA_TaskB": [
+              "SharedBus"
+            ],
+            "C_TaskB_TaskC": [
+              "SharedBus"
+            ]
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0001",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 10.7,
+            "throughput_fps": 93.45794392523365,
+            "steady_state_ii_ms": null,
+            "energy_mj": null,
+            "avg_power_w": null,
+            "allocation_cost": 20.0,
+            "area_usage": {
+              "luts": 1000.0,
+              "dsps": 5.0,
+              "bram": 0.0
+            },
+            "memory_kb": 24.0,
+            "bus_bandwidth_usage": {
+              "SharedBus": 0.7476635514018692
+            },
+            "schedule": {
+              "objects": [
+                {
+                  "id": "TaskA",
+                  "name": "Data Input",
+                  "resource_id": "ACC_TaskA",
+                  "start_time": 0.0,
+                  "duration": 4.0,
+                  "finish_time": 4.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskA_TaskB",
+                  "name": "Transfer TaskA->TaskB on SharedBus",
+                  "resource_id": "SharedBus",
+                  "start_time": 4.0,
+                  "duration": 0.75,
+                  "finish_time": 4.75,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskA",
+                    "destination": "TaskB",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SharedBus"
+                    ]
+                  }
+                },
+                {
+                  "id": "TaskB",
+                  "name": "Core Processing",
+                  "resource_id": "ACC_TaskB",
+                  "start_time": 4.75,
+                  "duration": 3.2,
+                  "finish_time": 7.95,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskB_TaskC",
+                  "name": "Transfer TaskB->TaskC on SharedBus",
+                  "resource_id": "SharedBus",
+                  "start_time": 7.95,
+                  "duration": 0.75,
+                  "finish_time": 8.7,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskB",
+                    "destination": "TaskC",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SharedBus"
+                    ]
+                  }
+                },
+                {
+                  "id": "TaskC",
+                  "name": "Output Format",
+                  "resource_id": "CPU",
+                  "start_time": 8.7,
+                  "duration": 2.0,
+                  "finish_time": 10.7,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 10.7,
+              "resource_utilization": {
+                "ACC_TaskA": 0.3738317757009346,
+                "ACC_TaskB": 0.2990654205607477,
+                "CPU": 0.1869158878504673,
+                "SharedBus": 0.14018691588785048
+              },
+              "critical_path": [
+                "TaskA",
+                "C_TaskA_TaskB",
+                "TaskB",
+                "C_TaskB_TaskC",
+                "TaskC"
+              ]
+            }
+          }
+        },
+        {
+          "id": "design_0002",
+          "bindings": {
+            "TaskA": "ACC_TaskA",
+            "TaskB": "CPU",
+            "TaskC": "CPU"
+          },
+          "allocated_resources": [
+            "ACC_TaskA",
+            "CPU",
+            "SharedBus"
+          ],
+          "routes": {
+            "C_TaskA_TaskB": [
+              "SharedBus"
+            ],
+            "C_TaskB_TaskC": []
+          },
+          "priority_order": [],
+          "evaluation": {
+            "design_id": "design_0002",
+            "feasible": true,
+            "violations": [],
+            "latency_ms": 11.75,
+            "throughput_fps": 85.1063829787234,
+            "steady_state_ii_ms": null,
+            "energy_mj": null,
+            "avg_power_w": null,
+            "allocation_cost": 15.0,
+            "area_usage": {
+              "luts": 200.0,
+              "dsps": 1.0,
+              "bram": 0.0
+            },
+            "memory_kb": 24.0,
+            "bus_bandwidth_usage": {
+              "SharedBus": 0.3404255319148936
+            },
+            "schedule": {
+              "objects": [
+                {
+                  "id": "TaskA",
+                  "name": "Data Input",
+                  "resource_id": "ACC_TaskA",
+                  "start_time": 0.0,
+                  "duration": 4.0,
+                  "finish_time": 4.0,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskA_TaskB",
+                  "name": "Transfer TaskA->TaskB on SharedBus",
+                  "resource_id": "SharedBus",
+                  "start_time": 4.0,
+                  "duration": 0.75,
+                  "finish_time": 4.75,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskA",
+                    "destination": "TaskB",
+                    "data_kb": 4.0,
+                    "route": [
+                      "SharedBus"
+                    ]
+                  }
+                },
+                {
+                  "id": "TaskB",
+                  "name": "Core Processing",
+                  "resource_id": "CPU",
+                  "start_time": 4.75,
+                  "duration": 5.0,
+                  "finish_time": 9.75,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                },
+                {
+                  "id": "C_TaskB_TaskC",
+                  "name": "Local Comm TaskB->TaskC",
+                  "resource_id": "local",
+                  "start_time": 9.75,
+                  "duration": 0.0,
+                  "finish_time": 9.75,
+                  "is_communication": true,
+                  "details": {
+                    "source": "TaskB",
+                    "destination": "TaskC",
+                    "data_kb": 4.0,
+                    "local_resource": "CPU"
+                  }
+                },
+                {
+                  "id": "TaskC",
+                  "name": "Output Format",
+                  "resource_id": "CPU",
+                  "start_time": 9.75,
+                  "duration": 2.0,
+                  "finish_time": 11.75,
+                  "is_communication": false,
+                  "details": {
+                    "op_type": "compute",
+                    "input_kb": 0.0,
+                    "output_kb": 0.0
+                  }
+                }
+              ],
+              "latency": 11.75,
+              "resource_utilization": {
+                "ACC_TaskA": 0.3404255319148936,
+                "CPU": 0.5957446808510638,
+                "SharedBus": 0.06382978723404255
+              },
+              "critical_path": [
+                "TaskA",
+                "C_TaskA_TaskB",
+                "TaskB",
+                "C_TaskB_TaskC",
+                "TaskC"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

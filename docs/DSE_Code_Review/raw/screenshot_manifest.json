@@ -1,0 +1,82 @@
+[
+  {
+    "file": "01_dashboard.jpg",
+    "sha256": "77f913eb1533b61ae9144cc86b54227bfa561ccb909942321a4c35c7a2661040",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "02_application.jpg",
+    "sha256": "de27bc7dbd70bce85d789cc198b66ca710b02c928e1a1c0ee51db21e9809e669",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "03_platform.jpg",
+    "sha256": "4207fd2b03fc73527df859e18f67a2a24ba8ecfda23eb25d17315ee758c4e331",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "04_mapping.jpg",
+    "sha256": "831a36750289c76d3085da3eb6b89560b9aa55edf601b76bfbbcbe0bd70b26fb",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "05_pareto_results.jpg",
+    "sha256": "feba47537921cca38617003d9f539c837bc46f776ae188957d56a93d474f02e6",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "06_schedule.jpg",
+    "sha256": "cca7c7f394b4fd2fe058cef871a54813a2b7d6e11212a3383d3a7e52d13edb49",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "07_bottlenecks.jpg",
+    "sha256": "5333600dc39faadf723a686e3c9f44dedca1264a1586cd981bb47ce43429af8d",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "08_compare.jpg",
+    "sha256": "e654990d0e6d2c65067d4b404f0253b7c3f824864bca0bd5fe9853c251d4d44d",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "09_constraints.jpg",
+    "sha256": "2c8b44ab70e0bfcb305bd449d190f56475f27ab04e65d4c5aab26713d7543007",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "10_infeasible_badge.jpg",
+    "sha256": "1c47be6877c0adf4388d1bb935ee4a5182f58d85b41dde11d5da76f06350f2be",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "11_infeasible_results.jpg",
+    "sha256": "e3c5dba243bef3d6fa8758b79ba7357e9d850a8edd175a691a7a1068482e434c",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "12_stale_project.jpg",
+    "sha256": "f0ac21f47427a58786bf14435183d5ea8381e5a4be8dc1a4146956b2647e117d",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "13_golden_schedule.jpg",
+    "sha256": "0df416896efbb67ab8157538cc2297d39e5e4600d58decfdc039081ab9d4553c",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "14_cpu_fpga_results.jpg",
+    "sha256": "429d794cfe8b7650cf4ea9a93ac5effafe78aefd1dc1d1c8729c3544cc31fcad",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "15_compare_selected.jpg",
+    "sha256": "4f6347de7771c9b4c0497d1c7c32c16059126e95f07cc7bcfc5eea66436374c8",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  },
+  {
+    "file": "16_compare_wrong_designs.jpg",
+    "sha256": "7dc4533f69a1cc54e07ca682888247d671bb1f9c3de190d14ee00e616dac62db",
+    "provenance": "Genuine cloud-browser JPEG; full viewport 1363x936; PDF may show declared detail crop."
+  }
+]

@@ -1,0 +1,51 @@
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.040378+00:00", "level": "info", "message": "Loading application and architecture model."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.040400+00:00", "level": "info", "message": "Validating problem graph and architecture graph."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.040490+00:00", "level": "info", "message": "Lowering dependencies into communication objects."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.040501+00:00", "level": "info", "message": "Starting search strategy: exhaustive"}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.041047+00:00", "level": "info", "message": "Exploration completed: 2 designs evaluated."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.041057+00:00", "level": "info", "message": "Pareto front extracted: 2 optimal designs."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.041062+00:00", "level": "info", "message": "Recommended design selected: design_0001"}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.040378+00:00", "level": "info", "message": "Loading application and architecture model."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.040400+00:00", "level": "info", "message": "Validating problem graph and architecture graph."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.040490+00:00", "level": "info", "message": "Lowering dependencies into communication objects."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.040501+00:00", "level": "info", "message": "Starting search strategy: exhaustive"}
+
+event: progress
+data: {"evaluated": 1, "total": 2, "elapsed_seconds": 0.0, "current_candidate": "design_0001", "feasible": true}
+
+event: progress
+data: {"evaluated": 2, "total": 2, "elapsed_seconds": 0.0, "current_candidate": "design_0002", "feasible": true}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.041047+00:00", "level": "info", "message": "Exploration completed: 2 designs evaluated."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.041057+00:00", "level": "info", "message": "Pareto front extracted: 2 optimal designs."}
+
+event: log
+data: {"timestamp": "2026-11-04T23:08:14.041062+00:00", "level": "info", "message": "Recommended design selected: design_0001"}
+
+event: done
+data: {"run_id": "run_5bb8436c", "status": "completed", "evaluated_count": 2, "pareto_count": 2, "recommended_design_id": "design_0001", "elapsed_seconds": 0.0}
+

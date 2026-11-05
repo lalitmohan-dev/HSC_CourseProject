@@ -1,0 +1,13 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> frontend@0.0.0 dev
+> vite --host 127.0.0.1
+
+
+  VITE v8.3.5  ready in 165 ms
+
+  ➜  Local:   http://127.0.0.1:5173/
+6:07:47 PM [vite] changed tsconfig file detected: /workspace/scratch/0955ab276a86/repo/dse/frontend/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+6:07:47 PM [vite] (client) page reload index.html
+6:07:47 PM [vite] vite.config.ts changed, restarting server...
+6:07:47 PM [vite] server restarted.

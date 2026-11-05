@@ -1,0 +1,142 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0 -- /workspace/scratch/0955ab276a86/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/scratch/0955ab276a86
+plugins: cov-7.1.0, anyio-4.16.0
+collecting ... collected 23 items
+
+audit/test_independent.py::test_decimal_transfer_units PASSED            [  4%]
+audit/test_independent.py::test_execution_cycles_to_ms PASSED            [  8%]
+audit/test_independent.py::test_per_resource_capacity_is_local FAILED    [ 13%]
+audit/test_independent.py::test_global_max_area_enforced FAILED          [ 17%]
+audit/test_independent.py::test_fixed_binding_enforced_by_evaluator FAILED [ 21%]
+audit/test_independent.py::test_mandatory_allocation_enforced FAILED     [ 26%]
+audit/test_independent.py::test_explicit_route_connectivity_enforced FAILED [ 30%]
+audit/test_independent.py::test_missing_route_rejected PASSED            [ 34%]
+audit/test_independent.py::test_communication_ids_disjoint_from_task_ids FAILED [ 39%]
+audit/test_independent.py::test_negative_power_rejected FAILED           [ 43%]
+audit/test_independent.py::test_unknown_objective_rejected FAILED        [ 47%]
+audit/test_independent.py::test_unknown_power_stays_null PASSED          [ 52%]
+audit/test_independent.py::test_abstract_ticks_disable_physical_metrics PASSED [ 56%]
+audit/test_independent.py::test_parallel_resource_schedule PASSED        [ 60%]
+audit/test_independent.py::test_multihop_with_explicit_full_allocation PASSED [ 65%]
+audit/test_independent.py::test_multihop_canonical_allocation_includes_bridge FAILED [ 69%]
+audit/test_independent.py::test_nsga2_hard_evaluation_budget FAILED      [ 73%]
+audit/test_independent.py::test_nsga2_generations_setting_forwarded FAILED [ 78%]
+audit/test_independent.py::test_project_id_cannot_escape_storage_directory FAILED [ 82%]
+audit/test_independent.py::test_synthetic_benchmark_exact_values PASSED  [ 86%]
+audit/test_independent.py::test_all_four_searches_return_legal_seeded_results PASSED [ 91%]
+audit/test_independent.py::test_persisted_run_retains_design_access FAILED [ 95%]
+audit/test_independent.py::test_fpga_static_power_affects_energy FAILED  [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_per_resource_capacity_is_local ______________________
+audit/test_independent.py:28: in test_per_resource_capacity_is_local
+    assert r.feasible, f"Each resource uses 60/100 logic, but got {r.violations}"
+E   AssertionError: Each resource uses 60/100 logic, but got [ConstraintViolation(metric='capacity_ACC_logic', limit=100.0, actual=120.0, unit='logic', severity='error'), ConstraintViolation(metric='capacity_CPU_logic', limit=100.0, actual=120.0, unit='logic', severity='error')]
+E   assert False
+E    +  where False = EvaluationResult(design_id='audit', feasible=False, violations=[ConstraintViolation(metric='capacity_ACC_logic', limit=100.0, actual=120.0, unit='logic', severity='error'), ConstraintViolation(metric='capacity_CPU_logic', limit=100.0, actual=120.0, unit='logic', severity='error')], latency_ms=3.0, throughput_fps=333.3333333333333, steady_state_ii_ms=None, energy_mj=0.4, avg_power_w=0.13333333333333333, allocation_cost=0.0, area_usage={'logic': 120.0}, memory_kb=0.0, bus_bandwidth_usage={}, schedule=Schedule(objects=[ScheduledObject(id='B', name='B', resource_id='ACC', start_time=0.0, duration=1.0, finish_time=1.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0}), ScheduledObject(id='A', name='A', resource_id='CPU', start_time=0.0, duration=3.0, finish_time=3.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0})], latency=3.0, resource_utilization={'ACC': 0.3333333333333333, 'BUS': 0.0, 'CPU': 1.0}, critical_path=['A'])).feasible
+________________________ test_global_max_area_enforced _________________________
+audit/test_independent.py:34: in test_global_max_area_enforced
+    assert not r.feasible, f"120 logic exceeds global 100 but feasible={r.feasible}"
+E   AssertionError: 120 logic exceeds global 100 but feasible=True
+E   assert not True
+E    +  where True = EvaluationResult(design_id='audit', feasible=True, violations=[], latency_ms=3.0, throughput_fps=333.3333333333333, steady_state_ii_ms=None, energy_mj=0.4, avg_power_w=0.13333333333333333, allocation_cost=0.0, area_usage={'logic': 120.0}, memory_kb=0.0, bus_bandwidth_usage={}, schedule=Schedule(objects=[ScheduledObject(id='B', name='B', resource_id='ACC', start_time=0.0, duration=1.0, finish_time=1.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0}), ScheduledObject(id='A', name='A', resource_id='CPU', start_time=0.0, duration=3.0, finish_time=3.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0})], latency=3.0, resource_utilization={'ACC': 0.3333333333333333, 'BUS': 0.0, 'CPU': 1.0}, critical_path=['A'])).feasible
+___________________ test_fixed_binding_enforced_by_evaluator ___________________
+audit/test_independent.py:40: in test_fixed_binding_enforced_by_evaluator
+    assert not r.feasible, "Evaluator accepted A on ACC despite fixed CPU"
+E   AssertionError: Evaluator accepted A on ACC despite fixed CPU
+E   assert not True
+E    +  where True = EvaluationResult(design_id='audit', feasible=True, violations=[], latency_ms=3.0, throughput_fps=333.3333333333333, steady_state_ii_ms=None, energy_mj=0.4, avg_power_w=0.13333333333333333, allocation_cost=0.0, area_usage={'logic': 120.0}, memory_kb=0.0, bus_bandwidth_usage={}, schedule=Schedule(objects=[ScheduledObject(id='B', name='B', resource_id='CPU', start_time=0.0, duration=3.0, finish_time=3.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0}), ScheduledObject(id='A', name='A', resource_id='ACC', start_time=0.0, duration=1.0, finish_time=1.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0})], latency=3.0, resource_utilization={'ACC': 0.3333333333333333, 'BUS': 0.0, 'CPU': 1.0}, critical_path=['B'])).feasible
+______________________ test_mandatory_allocation_enforced ______________________
+audit/test_independent.py:45: in test_mandatory_allocation_enforced
+    assert not r.feasible, "Mandatory CPU and BUS omitted without rejection"
+E   AssertionError: Mandatory CPU and BUS omitted without rejection
+E   assert not True
+E    +  where True = EvaluationResult(design_id='audit', feasible=True, violations=[], latency_ms=1.0, throughput_fps=1000.0, steady_state_ii_ms=None, energy_mj=0.1, avg_power_w=0.1, allocation_cost=0.0, area_usage={'logic': 60.0}, memory_kb=0.0, bus_bandwidth_usage={}, schedule=Schedule(objects=[ScheduledObject(id='A', name='A', resource_id='ACC', start_time=0.0, duration=1.0, finish_time=1.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0})], latency=1.0, resource_utilization={'ACC': 1.0}, critical_path=['A'])).feasible
+__________________ test_explicit_route_connectivity_enforced ___________________
+audit/test_independent.py:52: in test_explicit_route_connectivity_enforced
+    assert not r.feasible, "Explicit route uses a bus disconnected from destination ACC"
+E   AssertionError: Explicit route uses a bus disconnected from destination ACC
+E   assert not True
+E    +  where True = EvaluationResult(design_id='audit', feasible=True, violations=[], latency_ms=4.75, throughput_fps=210.52631578947367, steady_state_ii_ms=None, energy_mj=0.4, avg_power_w=0.08421052631578947, allocation_cost=0.0, area_usage={'logic': 120.0}, memory_kb=4.0, bus_bandwidth_usage={'BUS': 0.8421052631578947}, schedule=Schedule(objects=[ScheduledObject(id='A', name='A', resource_id='CPU', start_time=0.0, duration=3.0, finish_time=3.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0}), ScheduledObject(id='C', name='Transfer A->B on BUS', resource_id='BUS', start_time=3.0, duration=0.75, finish_time=3.75, is_communication=True, details={'source': 'A', 'destination': 'B', 'data_kb': 4.0, 'route': ['BUS']}), ScheduledObject(id='B', name='B', resource_id='ACC', start_time=3.75, duration=1.0, finish_time=4.75, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0})], latency=4.75, resource_utilization={'ACC': 0.21052631578947367, 'BUS': 0.15789473684210525, 'CPU': 0.631578947368421}, critical_path=['A', 'C', 'B'])).feasible
+________________ test_communication_ids_disjoint_from_task_ids _________________
+audit/test_independent.py:61: in test_communication_ids_disjoint_from_task_ids
+    assert not validate_project(p).is_valid, "Communication A overwrites compute A during scheduling"
+E   AssertionError: Communication A overwrites compute A during scheduling
+E   assert not True
+E    +  where True = ValidationResult(is_valid=True, errors=[], warnings=[]).is_valid
+E    +    where ValidationResult(is_valid=True, errors=[], warnings=[]) = validate_project(ProjectIR(schema_version=2, meta=ProjectMetadata(id=None, name='Audit', description='', time_unit='ms', created_at=None, updated_at=None, display={}), problem=ProblemGraph(nodes=[ComputeNode(id='A', name='A', op_type='compute', input_kb=0.0, output_kb=0.0, memory_kb=0.0, fixed_resource_id=None, notes=None), ComputeNode(id='B', name='B', op_type='compute', input_kb=0.0, output_kb=0.0, memory_kb=0.0, fixed_resource_id=None, notes=None)], edges=[DataEdge(source_id='A', destination_id='B', data_kb=0.0, comm_id='A')]), architecture=ArchitectureGraph(resources=[ResourceIR(id='CPU', name='CPU', kind=<ResourceKind.PROCESSOR: 'processor'>, mandatory=True, allocation_cost=0.0, static_power_mw=0.0, clock_mhz=None, max_parallel=1, capacity={'logic': 100.0}, area={}, connects=[], bandwidth_mb_per_s=None, setup_latency_ms=0.0, power_mw=None), ResourceIR(id='ACC', name='ACC', kind=<ResourceKind.HW_MODULE: 'hw_module'>, mandatory=False, allocation_cost=0.0, static_power_mw=0.0, clock_mhz=None, max_parallel=1, capacity={'logic': 100.0}, area={}, connects=[], bandwidth_mb_per_s=None, setup_latency_ms=0.0, power_mw=None), ResourceIR(id='BUS', name='BUS', kind=<ResourceKind.BUS: 'bus'>, mandatory=Tr...], bandwidth_mb_per_s=8.0, setup_latency_ms=0.25, power_mw=0.0)], capacity_groups=[]), mapping=MappingIR(options=[MappingOption(node_id='A', resource_id='CPU', execution_time_ms=3.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0}), MappingOption(node_id='A', resource_id='ACC', execution_time_ms=1.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0}), MappingOption(node_id='B', resource_id='CPU', execution_time_ms=3.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0}), MappingOption(node_id='B', resource_id='ACC', execution_time_ms=1.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0})]), constraints=ConstraintsIR(max_latency_ms=None, min_throughput_fps=None, max_total_energy_mj=None, max_avg_power_mw=None, max_allocation_cost=None, max_area={}, max_memory_kb=None), objectives=ObjectivesIR(primary='latency', names=['latency', 'allocation_cost'], weights={}), settings=SearchSettings(strategy=<SearchStrategy.EXHAUSTIVE: 'exhaustive'>, priority_policy=<PriorityPolicy.DEFAULT: 'default'>, explicit_priorities=[], pipelined=False, budget_evaluations=1000, seed=42, population_size=50, generations=50), designs=[]))
+_________________________ test_negative_power_rejected _________________________
+audit/test_independent.py:65: in test_negative_power_rejected
+    assert not validate_project(p).is_valid, "Negative active power accepted"
+E   AssertionError: Negative active power accepted
+E   assert not True
+E    +  where True = ValidationResult(is_valid=True, errors=[], warnings=[]).is_valid
+E    +    where ValidationResult(is_valid=True, errors=[], warnings=[]) = validate_project(ProjectIR(schema_version=2, meta=ProjectMetadata(id=None, name='Audit', description='', time_unit='ms', created_at=None, updated_at=None, display={}), problem=ProblemGraph(nodes=[ComputeNode(id='A', name='A', op_type='compute', input_kb=0.0, output_kb=0.0, memory_kb=0.0, fixed_resource_id=None, notes=None), ComputeNode(id='B', name='B', op_type='compute', input_kb=0.0, output_kb=0.0, memory_kb=0.0, fixed_resource_id=None, notes=None)], edges=[]), architecture=ArchitectureGraph(resources=[ResourceIR(id='CPU', name='CPU', kind=<ResourceKind.PROCESSOR: 'processor'>, mandatory=True, allocation_cost=0.0, static_power_mw=0.0, clock_mhz=None, max_parallel=1, capacity={'logic': 100.0}, area={}, connects=[], bandwidth_mb_per_s=None, setup_latency_ms=0.0, power_mw=None), ResourceIR(id='ACC', name='ACC', kind=<ResourceKind.HW_MODULE: 'hw_module'>, mandatory=False, allocation_cost=0.0, static_power_mw=0.0, clock_mhz=None, max_parallel=1, capacity={'logic': 100.0}, area={}, connects=[], bandwidth_mb_per_s=None, setup_latency_ms=0.0, power_mw=None), ResourceIR(id='BUS', name='BUS', kind=<ResourceKind.BUS: 'bus'>, mandatory=True, allocation_cost=0.0, static_power_mw=0.0, clock_mhz=None, max_par...'], bandwidth_mb_per_s=8.0, setup_latency_ms=0.25, power_mw=0.0)], capacity_groups=[]), mapping=MappingIR(options=[MappingOption(node_id='A', resource_id='CPU', execution_time_ms=3.0, execution_cycles=None, active_power_mw=-100, usage={'logic': 60.0}), MappingOption(node_id='A', resource_id='ACC', execution_time_ms=1.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0}), MappingOption(node_id='B', resource_id='CPU', execution_time_ms=3.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0}), MappingOption(node_id='B', resource_id='ACC', execution_time_ms=1.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0})]), constraints=ConstraintsIR(max_latency_ms=None, min_throughput_fps=None, max_total_energy_mj=None, max_avg_power_mw=None, max_allocation_cost=None, max_area={}, max_memory_kb=None), objectives=ObjectivesIR(primary='latency', names=['latency', 'allocation_cost'], weights={}), settings=SearchSettings(strategy=<SearchStrategy.EXHAUSTIVE: 'exhaustive'>, priority_policy=<PriorityPolicy.DEFAULT: 'default'>, explicit_priorities=[], pipelined=False, budget_evaluations=1000, seed=42, population_size=50, generations=50), designs=[]))
+_______________________ test_unknown_objective_rejected ________________________
+audit/test_independent.py:69: in test_unknown_objective_rejected
+    assert not validate_project(p).is_valid, "Unknown objective silently ignored by ranking"
+E   AssertionError: Unknown objective silently ignored by ranking
+E   assert not True
+E    +  where True = ValidationResult(is_valid=True, errors=[], warnings=[]).is_valid
+E    +    where ValidationResult(is_valid=True, errors=[], warnings=[]) = validate_project(ProjectIR(schema_version=2, meta=ProjectMetadata(id=None, name='Audit', description='', time_unit='ms', created_at=None, updated_at=None, display={}), problem=ProblemGraph(nodes=[ComputeNode(id='A', name='A', op_type='compute', input_kb=0.0, output_kb=0.0, memory_kb=0.0, fixed_resource_id=None, notes=None), ComputeNode(id='B', name='B', op_type='compute', input_kb=0.0, output_kb=0.0, memory_kb=0.0, fixed_resource_id=None, notes=None)], edges=[]), architecture=ArchitectureGraph(resources=[ResourceIR(id='CPU', name='CPU', kind=<ResourceKind.PROCESSOR: 'processor'>, mandatory=True, allocation_cost=0.0, static_power_mw=0.0, clock_mhz=None, max_parallel=1, capacity={'logic': 100.0}, area={}, connects=[], bandwidth_mb_per_s=None, setup_latency_ms=0.0, power_mw=None), ResourceIR(id='ACC', name='ACC', kind=<ResourceKind.HW_MODULE: 'hw_module'>, mandatory=False, allocation_cost=0.0, static_power_mw=0.0, clock_mhz=None, max_parallel=1, capacity={'logic': 100.0}, area={}, connects=[], bandwidth_mb_per_s=None, setup_latency_ms=0.0, power_mw=None), ResourceIR(id='BUS', name='BUS', kind=<ResourceKind.BUS: 'bus'>, mandatory=True, allocation_cost=0.0, static_power_mw=0.0, clock_mhz=None, max_par...', 'ACC'], bandwidth_mb_per_s=8.0, setup_latency_ms=0.25, power_mw=0.0)], capacity_groups=[]), mapping=MappingIR(options=[MappingOption(node_id='A', resource_id='CPU', execution_time_ms=3.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0}), MappingOption(node_id='A', resource_id='ACC', execution_time_ms=1.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0}), MappingOption(node_id='B', resource_id='CPU', execution_time_ms=3.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0}), MappingOption(node_id='B', resource_id='ACC', execution_time_ms=1.0, execution_cycles=None, active_power_mw=100.0, usage={'logic': 60.0})]), constraints=ConstraintsIR(max_latency_ms=None, min_throughput_fps=None, max_total_energy_mj=None, max_avg_power_mw=None, max_allocation_cost=None, max_area={}, max_memory_kb=None), objectives=ObjectivesIR(primary='latency', names=['nonexistent_metric'], weights={}), settings=SearchSettings(strategy=<SearchStrategy.EXHAUSTIVE: 'exhaustive'>, priority_policy=<PriorityPolicy.DEFAULT: 'default'>, explicit_priorities=[], pipelined=False, budget_evaluations=1000, seed=42, population_size=50, generations=50), designs=[]))
+______________ test_multihop_canonical_allocation_includes_bridge ______________
+audit/test_independent.py:98: in test_multihop_canonical_allocation_includes_bridge
+    assert r.feasible, "Canonical allocation drops intermediate BRIDGE, making legal route infeasible"
+E   AssertionError: Canonical allocation drops intermediate BRIDGE, making legal route infeasible
+E   assert False
+E    +  where False = EvaluationResult(design_id='audit', feasible=False, violations=[ConstraintViolation(metric='feasibility', limit=0.0, actual=1.0, unit='', severity='error')], latency_ms=inf, throughput_fps=None, steady_state_ii_ms=None, energy_mj=None, avg_power_w=None, allocation_cost=0.0, area_usage={}, memory_kb=0.0, bus_bandwidth_usage={}, schedule=None).feasible
+______________________ test_nsga2_hard_evaluation_budget _______________________
+audit/test_independent.py:104: in test_nsga2_hard_evaluation_budget
+    assert len(evaluated)<=1, f"Budget 1 evaluated {len(evaluated)} distinct candidates"
+E   AssertionError: Budget 1 evaluated 2 distinct candidates
+E   assert 2 <= 1
+E    +  where 2 = len([CandidateDesign(id='nsga2_init_0001', bindings={'A': 'ACC', 'B': 'ACC'}, allocated_resources=['ACC', 'BUS', 'CPU'], routes={}, priority_order=[], evaluation=EvaluationResult(design_id='nsga2_init_0001', feasible=True, violations=[], latency_ms=2.0, throughput_fps=500.0, steady_state_ii_ms=None, energy_mj=0.2, avg_power_w=0.1, allocation_cost=0.0, area_usage={'logic': 120.0}, memory_kb=0.0, bus_bandwidth_usage={}, schedule=Schedule(objects=[ScheduledObject(id='A', name='A', resource_id='ACC', start_time=0.0, duration=1.0, finish_time=1.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0}), ScheduledObject(id='B', name='B', resource_id='ACC', start_time=1.0, duration=1.0, finish_time=2.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0})], latency=2.0, resource_utilization={'ACC': 1.0, 'BUS': 0.0, 'CPU': 0.0}, critical_path=['A', 'B']))), CandidateDesign(id='nsga2_init_0002', bindings={'A': 'CPU', 'B': 'ACC'}, allocated_resources=['ACC', 'BUS', 'CPU'], routes={}, priority_order=[], evaluation=EvaluationResult(design_id='nsga2_init_0002', feasible=True, violations=[], latency_ms=3.0, throughput_fps=333.3333333333333, steady_state_ii_ms=None, energy_mj=0.4, avg_power_w=0.13333333333333333, allocation_cost=0.0, area_usage={'logic': 120.0}, memory_kb=0.0, bus_bandwidth_usage={}, schedule=Schedule(objects=[ScheduledObject(id='B', name='B', resource_id='ACC', start_time=0.0, duration=1.0, finish_time=1.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0}), ScheduledObject(id='A', name='A', resource_id='CPU', start_time=0.0, duration=3.0, finish_time=3.0, is_communication=False, details={'op_type': 'compute', 'input_kb': 0.0, 'output_kb': 0.0})], latency=3.0, resource_utilization={'ACC': 0.3333333333333333, 'BUS': 0.0, 'CPU': 1.0}, critical_path=['A'])))])
+___________________ test_nsga2_generations_setting_forwarded ___________________
+audit/test_independent.py:113: in test_nsga2_generations_setting_forwarded
+    assert seen["generations"]==3, f"Configured 3 generations, forwarded {seen['generations']}"
+E   AssertionError: Configured 3 generations, forwarded 10
+E   assert 10 == 3
+_______________ test_project_id_cannot_escape_storage_directory ________________
+audit/test_independent.py:120: in test_project_id_cannot_escape_storage_directory
+    assert not (tmp_path/"audit_escape.json").exists(), "Project id wrote outside configured storage"
+E   AssertionError: Project id wrote outside configured storage
+E   assert not True
+E    +  where True = exists()
+E    +    where exists = (PosixPath('/tmp/pytest-of-root/pytest-3/test_project_id_cannot_escape_0') / 'audit_escape.json').exists
+___________________ test_persisted_run_retains_design_access ___________________
+audit/test_independent.py:154: in test_persisted_run_retains_design_access
+    assert before.status_code==after.status_code==200, f"Before restart {before.status_code}; persisted designs {after.status_code}"
+E   AssertionError: Before restart 200; persisted designs 404
+E   assert 200 == 404
+E    +  where 200 = <Response [200 OK]>.status_code
+E    +  and   404 = <Response [404 Not Found]>.status_code
+____________________ test_fpga_static_power_affects_energy _____________________
+audit/test_independent.py:164: in test_fpga_static_power_affects_energy
+    assert energies[1]>energies[0], f"FPGA static power 0 -> 1000 mW left energy unchanged: {energies}"
+E   AssertionError: FPGA static power 0 -> 1000 mW left energy unchanged: [2.6, 2.6]
+E   assert 2.6 > 2.6
+=============================== warnings summary ===============================
+audit/test_independent.py::test_persisted_run_retains_design_access
+  /workspace/scratch/0955ab276a86/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /workspace/scratch/0955ab276a86/audit/raw/independent_tests.xml -
+=========================== short test summary info ============================
+FAILED audit/test_independent.py::test_per_resource_capacity_is_local - Asser...
+FAILED audit/test_independent.py::test_global_max_area_enforced - AssertionEr...
+FAILED audit/test_independent.py::test_fixed_binding_enforced_by_evaluator - ...
+FAILED audit/test_independent.py::test_mandatory_allocation_enforced - Assert...
+FAILED audit/test_independent.py::test_explicit_route_connectivity_enforced
+FAILED audit/test_independent.py::test_communication_ids_disjoint_from_task_ids
+FAILED audit/test_independent.py::test_negative_power_rejected - AssertionErr...
+FAILED audit/test_independent.py::test_unknown_objective_rejected - Assertion...
+FAILED audit/test_independent.py::test_multihop_canonical_allocation_includes_bridge
+FAILED audit/test_independent.py::test_nsga2_hard_evaluation_budget - Asserti...
+FAILED audit/test_independent.py::test_nsga2_generations_setting_forwarded - ...
+FAILED audit/test_independent.py::test_project_id_cannot_escape_storage_directory
+FAILED audit/test_independent.py::test_persisted_run_retains_design_access - ...
+FAILED audit/test_independent.py::test_fpga_static_power_affects_energy - Ass...
+=================== 14 failed, 9 passed, 1 warning in 0.47s ====================

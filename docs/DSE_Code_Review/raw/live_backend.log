@@ -1,0 +1,54 @@
+INFO:     Started server process [7]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:52854 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/projects/golden-slide/validate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/projects/golden-slide/explore HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_6eb30ac6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_6eb30ac6/designs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_6eb30ac6/bottlenecks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_6eb30ac6/report?format=md HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_6eb30ac6/report?format=csv HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_6eb30ac6/report?format=json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/projects/synthetic-walkthrough/validate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/projects/synthetic-walkthrough/explore HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c/designs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c/bottlenecks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c/report?format=md HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c/report?format=csv HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c/report?format=json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/projects/simple-cpu-fpga/validate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/projects/simple-cpu-fpga/explore HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_d7a660d6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_d7a660d6/designs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_d7a660d6/bottlenecks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_d7a660d6/report?format=md HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_d7a660d6/report?format=csv HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_d7a660d6/report?format=json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c/designs?page_size=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/projects/not-present HTTP/1.1" 404 Not Found
+/workspace/scratch/0955ab276a86/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:59: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+  response = await handler(conn, exc)  # type: ignore[arg-type]
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_5bb8436c/report?format=pdf HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:52868 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/projects/synthetic-walkthrough HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/projects HTTP/1.1" 201 Created
+INFO:     127.0.0.1:52858 - "POST /api/projects/audit-impossible/explore HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_ec67b3d1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "DELETE /api/projects/audit-impossible HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/projects/synthetic-walkthrough HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/projects HTTP/1.1" 201 Created
+INFO:     127.0.0.1:52858 - "POST /api/projects/audit-load/explore HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "POST /api/runs/run_af155989/cancel HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "GET /api/runs/run_af155989 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52858 - "DELETE /api/projects/audit-load HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [7]

@@ -1,0 +1,29 @@
+health PASS {'status': 'ok', 'version': '0.1.0'}
+seeded_projects PASS ['audit-load', 'simple-cpu-fpga', 'synthetic-walkthrough', 'golden-slide']
+golden-slide_validate PASS {'is_valid': True, 'errors': [], 'warnings': []}
+golden-slide_explore PASS {'status': 'completed', 'designs': 1, 'latencies': [32.0]}
+golden-slide_bottlenecks PASS {'status': 200, 'latency': 32.0}
+golden-slide_export_md PASS {'status': 200, 'bytes': 2770}
+golden-slide_export_csv PASS {'status': 200, 'bytes': 188}
+golden-slide_export_json PASS {'status': 200, 'bytes': 4588}
+synthetic-walkthrough_validate PASS {'is_valid': True, 'errors': [], 'warnings': []}
+synthetic-walkthrough_explore PASS {'status': 'completed', 'designs': 2, 'latencies': [8.5, 10.0]}
+synthetic-walkthrough_bottlenecks PASS {'status': 200, 'latency': 8.5}
+synthetic-walkthrough_export_md PASS {'status': 200, 'bytes': 2960}
+synthetic-walkthrough_export_csv PASS {'status': 200, 'bytes': 318}
+synthetic-walkthrough_export_json PASS {'status': 200, 'bytes': 7128}
+simple-cpu-fpga_validate PASS {'is_valid': True, 'errors': [], 'warnings': []}
+simple-cpu-fpga_explore PASS {'status': 'completed', 'designs': 4, 'latencies': [9.7, 10.0, 10.7, 11.75]}
+simple-cpu-fpga_bottlenecks PASS {'status': 200, 'latency': 9.7}
+simple-cpu-fpga_export_md PASS {'status': 200, 'bytes': 3255}
+simple-cpu-fpga_export_csv PASS {'status': 200, 'bytes': 530}
+simple-cpu-fpga_export_json PASS {'status': 200, 'bytes': 11665}
+sse_completed_run_replay PASS {'status': 200, 'done_events': 1, 'log_events': 14}
+compare_two PASS [{'metric': 'latency_ms', 'design_0001': 8.5, 'design_0002': 10.0}, {'metric': 'allocation_cost', 'design_0001': 35.0, 'design_0002': 10.0}, {'metric': 'energy_mj', 'design_0001': 14.025, 'design_0002': 18.7}, {'metric': 'avg_power_w', 'design_0001': 1.6500000000000001, 'design_0002': 1.8699999999999999}]
+pagination PASS 2
+unknown_project_404 PASS 404
+unsupported_export_422 PASS 422
+frontend_http PASS {'status': 200, 'bytes': 615}
+frontend_api_proxy PASS {'status': 'ok', 'version': '0.1.0'}
+impossible_deadline_fallback PASS {'feasible': False, 'rationale': "WARNING: no feasible design exists under the current constraints; this is the least-violating fallback, not a feasible recommendation. Design 'design_0001' achieves the optimal weighted balance score of 0.500 across objectives latency, allocation_cost. Latency: 8.50 (project time unit), Allocation Cost: 35.0."}
+cancel_interrupts_active_search FAIL {'start_ack_seconds': 0.0035, 'cancel_response_seconds': 1.8695, 'final_status': 'completed', 'evaluated': 3000, 'cancel_response': {'run_id': 'run_af155989', 'status': 'cancelling'}}

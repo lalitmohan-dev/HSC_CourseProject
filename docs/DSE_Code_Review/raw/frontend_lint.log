@@ -1,0 +1,12 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> frontend@0.0.0 lint
+> oxlint
+
+src/App.tsx:20:5: warning react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'loadProjects' help: Either include it or remove the dependency array.
+src/components/graph/ArchitectureGraphView.tsx:86:7: warning react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'setNodes', and 'setEdges' help: Either include it or remove the dependency array.
+src/components/graph/ApplicationGraphView.tsx:61:7: warning react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'setEdges', and 'setNodes' help: Either include it or remove the dependency array.
+src/components/graph/MappingGraphView.tsx:81:7: warning react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'setEdges', and 'setNodes' help: Either include it or remove the dependency array.
+src/components/forms/ConstraintsSettingsView.tsx:18:35: error react-hooks(rules-of-hooks): React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+src/components/forms/ConstraintsSettingsView.tsx:19:41: error react-hooks(rules-of-hooks): React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+src/components/forms/ConstraintsSettingsView.tsx:20:43: error react-hooks(rules-of-hooks): React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.

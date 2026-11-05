@@ -1,0 +1,5 @@
+id,feasible,latency_ms,allocation_cost,energy_mj,avg_power_w,throughput_fps,bindings
+design_0003,1,9.7,15.0,,,103.09278350515464,"{""TaskA"": ""CPU"", ""TaskB"": ""ACC_TaskB"", ""TaskC"": ""CPU""}"
+design_0004,1,10.0,10.0,,,100.0,"{""TaskA"": ""CPU"", ""TaskB"": ""CPU"", ""TaskC"": ""CPU""}"
+design_0001,1,10.7,20.0,,,93.45794392523365,"{""TaskA"": ""ACC_TaskA"", ""TaskB"": ""ACC_TaskB"", ""TaskC"": ""CPU""}"
+design_0002,1,11.75,15.0,,,85.1063829787234,"{""TaskA"": ""ACC_TaskA"", ""TaskB"": ""CPU"", ""TaskC"": ""CPU""}"
