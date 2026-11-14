@@ -1,137 +1,127 @@
-# Hardware-Software Co-Design & System-Level Synthesis DSE Framework
+# Hardware–Software Co-Design Design-Space Exploration Framework
 
-A full-stack web application and analytical design-space exploration (DSE) framework for exploring system implementations of task-dependency graphs (application problem graphs) onto heterogeneous platform architectures (processors, hardware accelerators, and interconnect buses).
+A full-stack application for evaluating and comparing hardware–software implementations of task graphs on heterogeneous platforms. The framework models compute resources, accelerators, and interconnect buses; schedules work and communication; and explores candidate designs using multiple search strategies.
 
----
+## Overview
 
-## 1. Key Capabilities
+The evaluator uses a common system-synthesis model:
 
-- **Formal System Synthesis Model:** Explores designs defined as $(\alpha, \beta, \tau)$:
-  - $\alpha$: Resource allocation (mandatory, optional, and derived route interconnect)
-  - $\beta$: Binding of compute tasks and communication objects
-  - $\tau$: Deterministic list schedule respecting precedences and resource capacities
-- **Bus Contention & DMA-Style Transfers:** Models buses as scheduled, serialized resources. DMA transfers do not block compute resources.
-- **Multiple Exploration Strategies:**
-  - **Exhaustive:** Enumerates all legal configurations within budget ($2^{20}$ safety ceiling).
-  - **Random:** Uniform sampling with deterministic seeded reproducibility.
-  - **Greedy:** Local 1-change neighborhood search with restarts and tabu-deduplication.
-  - **NSGA-II:** Multi-objective genetic algorithm with constraint-dominated sorting, crossover, mutation, and crowding distance.
-- **Pareto Optimality & Recommendation:** Non-dominated sorting across user objectives (latency, cost, energy, power, throughput) with transparent min-max normalized weighted recommendation and trade-off rationales.
-- **Interactive Visualizations:**
-  - **React Flow + ELK.js:** Automatic hierarchical layout for Application DAGs and Architecture Platforms.
-  - **Mapping View:** Task graphs grouped and color-coded by bound resource, separating local (0 ms) from routed bus transfers.
-  - **Recharts Pareto Scatter:** Interactive exploration with selectable axes and click-to-inspect candidate selection.
-  - **Resource Gantt Timeline:** Compute vs bus transfer blocks with critical path gold border highlighting.
-  - **Bottleneck Analysis & What-If:** Critical path breakdown, resource busy %, and evaluated alternative bindings.
-  - **Side-by-Side Compare:** Metric comparisons for 2 to 4 candidates.
-  - **Server-Sent Events (SSE):** Real-time log and progress streaming during exploration runs.
+- **Allocation** selects the resources used by a design.
+- **Binding** assigns compute tasks to resources.
+- **Scheduling** produces a deterministic schedule that observes dependencies, resource capacities, and bus contention.
 
----
+Communication transfers occupy bus resources but do not block compute resources, enabling DMA-style overlap. Routing and scheduling policies are deterministic in the current model; see [Model Semantics and Limitations](docs/MODEL_LIMITATIONS.md) for the precise behavior and assumptions.
 
-## 2. Canonical Presets Included
+## Features
 
-1. **Canonical Golden Slide (`golden-slide`):**
-   - Direct implementation of Section 7 slide reference.
-   - Tasks: $V1, V2, V3, V4$.
-   - Communication: $V5$ (local RISC event, 0 ticks), $V6$ (1 tick on Shared Bus), $V7$ (1 tick on Shared Bus).
-   - Architecture: RISC, HWM1, Shared Bus SB.
-   - Verifies exact golden makespan of **32 abstract ticks**.
-2. **Synthetic Walkthrough (`synthetic-walkthrough`):**
-   - 3-stage pipeline ($T1 \rightarrow T2 \rightarrow T3$) comparing All-SW (10.0 ms) with HW-accelerated $T2$ on ACC1 (8.5 ms).
-3. **Simple CPU/FPGA Preset (`simple-cpu-fpga`):**
-   - Lowers legacy binary SW/HW tasks into the generalized IR with dedicated accelerators and an FPGA fabric capacity group.
+- **Design-space exploration:** Exhaustive, random, greedy, and NSGA-II search strategies.
+- **Evaluation:** Latency, throughput, area/cost, energy, power, and constraint checks where the model has sufficient input data.
+- **Candidate analysis:** Pareto-front extraction, weighted recommendations, bottleneck analysis, and what-if evaluation.
+- **Interactive frontend:** Application, architecture, and mapping graph views; Pareto charts; schedule timelines; candidate comparison; and exploration progress.
+- **API and reporting:** FastAPI endpoints for project management, validation, evaluation, and exploration, with Markdown, CSV, and JSON report exports.
+- **Project presets:** Golden Slide, Synthetic Walkthrough, and Simple CPU/FPGA examples.
 
----
+## Requirements
 
-See `docs/MODEL_LIMITATIONS.md` for exact model semantics, limitations and the verification record.
+- Python 3.11 or later
+- Node.js and npm (for local frontend development)
+- Docker Compose (optional, for running both services in containers)
 
----
+## Run locally
 
-## 3. Quick Start
+### Backend
 
-### Prerequisites
-- Python 3.11+
-- Node.js 18+ and npm
+From the repository root:
 
-### Running the Backend
 ```bash
 cd dse/backend
-pip install -e ".[dev]"
-uvicorn app.main:app --port 8000 --reload
+python -m pip install -e ".[dev]"
+uvicorn app.main:app --reload --port 8000
 ```
-API runs at: `http://localhost:8000`  
-Interactive Swagger docs: `http://localhost:8000/docs`  
-Health endpoint: `http://localhost:8000/api/health`
 
-### Running the Frontend
+The API is available at `http://localhost:8000`. Interactive API documentation is at `http://localhost:8000/docs`.
+
+### Frontend
+
+In a separate terminal:
+
 ```bash
 cd dse/frontend
 npm install
 npm run dev
 ```
-Open `http://localhost:5173` in your browser.
 
-### Running with Docker Compose
+Open `http://localhost:5173` in your browser. The Vite development server proxies API requests to the backend; start the backend as described above.
+
+### Docker Compose
+
+From the repository root:
+
 ```bash
 cd dse
-docker-compose up --build
+docker compose up --build
 ```
 
----
+The frontend is served on port `5173` and the backend on port `8000`. Project data is persisted under `dse/data/`.
 
-## 4. Running the Test Suite
+## Tests and production build
+
+Run the backend tests:
 
 ```bash
 cd dse/backend
-python -m pytest tests/ -v
+python -m pytest
 ```
-All 53 unit and API integration tests will run and pass, including:
-- Health and Projects REST API tests (`tests/api/test_projects_api.py`)
-- Exploration lifecycle and SSE stream tests (`tests/api/test_explore_api.py`)
-- Canonical Golden Test verifying 32 ticks latency (`tests/unit/test_golden_scheduler.py`)
-- Common Candidate Evaluator tests (`tests/unit/test_evaluator.py`)
-- Exhaustive, Random, Greedy, and NSGA-II search tests (`tests/unit/test_search.py`)
-- Pareto dominance and recommendation tests (`tests/unit/test_pareto.py`)
-- Presets adapter tests (`tests/unit/test_presets.py`)
-- DAG validator and lowering tests (`tests/unit/test_validator.py`, `tests/unit/test_lowering.py`)
 
-### Building the Frontend for Production
+Build the frontend for production:
+
 ```bash
 cd dse/frontend
 npm run build
 ```
-Compiles TypeScript and bundles via Vite with zero errors.
 
----
-
-## 5. Project Structure
+## Repository structure
 
 ```text
 HSC_CourseProject/
+├── README.md
 ├── docs/
-│   ├── DECISIONS.md              # Architecture decisions (D1-D8, I1-I2)
-│   └── IMPLEMENTATION_STATUS.md  # Detailed milestone progress and test log
+│   ├── DSE_Code_Review/       # Code review report and supporting evidence
+│   ├── api_test_results/      # API test reports, results, and supporting files
+│   ├── report/                # LaTeX report, scripts, figures, and data
+│   ├── IMPLEMENTATION_STATUS.md
+│   ├── MODEL_LIMITATIONS.md
+│   └── *.pdf                  # Project reference paper
 └── dse/
-    ├── docker-compose.yml        # Container orchestration
-    ├── data/projects/            # JSON project persistence & seeded presets
+    ├── docker-compose.yml
+    ├── data/
+    │   └── projects/          # Persisted project data and presets
     ├── backend/
-    │   ├── pyproject.toml
     │   ├── app/
-    │   │   ├── main.py           # FastAPI entrypoint & exception handlers
-    │   │   ├── api/              # REST routers: projects, explore, compare
-    │   │   ├── ir/               # Canonical IR models, validator, lowering, presets
-    │   │   ├── core/             # Pure Python scheduler and common evaluator
-    │   │   ├── search/           # Exhaustive, Random, Greedy, NSGA-II, Pareto
-    │   │   ├── analysis/         # Critical path and what-if bottlenecks
-    │   │   ├── persistence/      # JsonFileProjectRepository
-    │   │   └── reporting/        # Markdown, CSV, and JSON report generator
-    │   └── tests/                # 50 unit and integration tests
+    │   │   ├── analysis/      # Bottleneck and critical-path analysis
+    │   │   ├── api/           # FastAPI routes
+    │   │   ├── core/          # Evaluation and scheduling
+    │   │   ├── ir/            # Intermediate representation, validation, lowering
+    │   │   ├── persistence/   # Project storage
+    │   │   ├── reporting/     # Report generation
+    │   │   └── search/        # Candidate generation and search strategies
+    │   ├── tests/
+    │   │   ├── api/
+    │   │   └── unit/
+    │   └── pyproject.toml
     └── frontend/
-        ├── vite.config.ts        # Vite + Tailwind + API proxy
         ├── src/
-        │   ├── types/            # Canonical TypeScript contracts
-        │   ├── api/client.ts     # Typed REST API client
-        │   ├── store/index.ts    # Global Zustand store
-        │   ├── lib/elkLayout.ts  # ELK.js hierarchical DAG layout
-        │   └── components/       # Graph views, Gantt, Pareto, Dashboard, Shell
+        │   ├── api/
+        │   ├── components/    # Graph, dashboard, results, forms, and shell
+        │   ├── lib/
+        │   ├── store/
+        │   └── types/
+        └── package.json
 ```
+
+## Further documentation
+
+- [Implementation status](docs/IMPLEMENTATION_STATUS.md) — implemented components and project milestones.
+- [Model semantics and limitations](docs/MODEL_LIMITATIONS.md) — verified behavior, assumptions, and known limitations.
+- [DSE code review](docs/DSE_Code_Review/README.md) — review overview and supporting material.
+- [API test reports](docs/api_test_results/API_TEST_REPORT.md) — API test results and evidence.
