@@ -1,0 +1,584 @@
+{
+  "space_size": 486,
+  "feasible": 179,
+  "infeasible": 307,
+  "violation_counts": {
+    "latency": 289,
+    "capacity_FPGA_logic": 18
+  },
+  "pareto3_size": 12,
+  "pareto2_size": 8,
+  "pareto3": [
+    {
+      "id": "design_0466",
+      "bindings": {
+        "T1": "FPGA",
+        "T2": "FPGA",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 10.754,
+      "cost": 55.0,
+      "energy_mj": 12.139,
+      "power_w": 1.129,
+      "fps": 92.99,
+      "logic": 8500.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0478",
+      "bindings": {
+        "T1": "FPGA",
+        "T2": "FPGA",
+        "T3": "FPGA",
+        "T4": "DSP",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 10.754,
+      "cost": 55.0,
+      "energy_mj": 12.139,
+      "power_w": 1.129,
+      "fps": 92.99,
+      "logic": 8500.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0304",
+      "bindings": {
+        "T1": "DSP",
+        "T2": "FPGA",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.172,
+      "cost": 55.0,
+      "energy_mj": 13.658,
+      "power_w": 1.122,
+      "fps": 82.16,
+      "logic": 6500.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0316",
+      "bindings": {
+        "T1": "DSP",
+        "T2": "FPGA",
+        "T3": "FPGA",
+        "T4": "DSP",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.172,
+      "cost": 55.0,
+      "energy_mj": 13.658,
+      "power_w": 1.122,
+      "fps": 82.16,
+      "logic": 6500.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0460",
+      "bindings": {
+        "T1": "FPGA",
+        "T2": "FPGA",
+        "T3": "DSP",
+        "T4": "DSP",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.554,
+      "cost": 55.0,
+      "energy_mj": 14.047,
+      "power_w": 1.119,
+      "fps": 79.66,
+      "logic": 6000.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0250",
+      "bindings": {
+        "T1": "DSP",
+        "T2": "DSP",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.572,
+      "cost": 55.0,
+      "energy_mj": 14.717,
+      "power_w": 1.171,
+      "fps": 79.54,
+      "logic": 2500.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0262",
+      "bindings": {
+        "T1": "DSP",
+        "T2": "DSP",
+        "T3": "FPGA",
+        "T4": "DSP",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.572,
+      "cost": 55.0,
+      "energy_mj": 14.717,
+      "power_w": 1.171,
+      "fps": 79.54,
+      "logic": 2500.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0412",
+      "bindings": {
+        "T1": "FPGA",
+        "T2": "DSP",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.79,
+      "cost": 55.0,
+      "energy_mj": 14.604,
+      "power_w": 1.142,
+      "fps": 78.19,
+      "logic": 4500.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0424",
+      "bindings": {
+        "T1": "FPGA",
+        "T2": "DSP",
+        "T3": "FPGA",
+        "T4": "DSP",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.79,
+      "cost": 55.0,
+      "energy_mj": 14.604,
+      "power_w": 1.142,
+      "fps": 78.19,
+      "logic": 4500.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0252",
+      "bindings": {
+        "T1": "DSP",
+        "T2": "DSP",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "FPGA",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.872,
+      "cost": 55.0,
+      "energy_mj": 14.653,
+      "power_w": 1.138,
+      "fps": 77.69,
+      "logic": 4000.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0264",
+      "bindings": {
+        "T1": "DSP",
+        "T2": "DSP",
+        "T3": "FPGA",
+        "T4": "DSP",
+        "T5": "FPGA",
+        "T6": "DSP"
+      },
+      "latency_ms": 12.872,
+      "cost": 55.0,
+      "energy_mj": 14.653,
+      "power_w": 1.138,
+      "fps": 77.69,
+      "logic": 4000.0,
+      "feasible": true
+    },
+    {
+      "id": "design_0244",
+      "bindings": {
+        "T1": "DSP",
+        "T2": "DSP",
+        "T3": "DSP",
+        "T4": "DSP",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "latency_ms": 13.636,
+      "cost": 25.0,
+      "energy_mj": 12.475,
+      "power_w": 0.915,
+      "fps": 73.34,
+      "logic": 0.0,
+      "feasible": true
+    }
+  ],
+  "recommended3": {
+    "id": "design_0244",
+    "bindings": {
+      "T1": "DSP",
+      "T2": "DSP",
+      "T3": "DSP",
+      "T4": "DSP",
+      "T5": "DSP",
+      "T6": "DSP"
+    },
+    "latency_ms": 13.636,
+    "cost": 25.0,
+    "energy_mj": 12.475,
+    "power_w": 0.915,
+    "fps": 73.34,
+    "logic": 0.0,
+    "feasible": true
+  },
+  "rec_rationale": "Design 'design_0244' achieves the optimal weighted balance score of 0.283 across objectives latency, allocation_cost, energy, area. Latency: 13.64 (project time unit), Allocation Cost: 25.0.",
+  "rec_latency_heavy": {
+    "id": "design_0466",
+    "bindings": {
+      "T1": "FPGA",
+      "T2": "FPGA",
+      "T3": "DSP",
+      "T4": "FPGA",
+      "T5": "DSP",
+      "T6": "DSP"
+    },
+    "latency_ms": 10.754,
+    "cost": 55.0,
+    "energy_mj": 12.139,
+    "power_w": 1.129,
+    "fps": 92.99,
+    "logic": 8500.0,
+    "feasible": true
+  },
+  "rec_cost_heavy": {
+    "id": "design_0244",
+    "bindings": {
+      "T1": "DSP",
+      "T2": "DSP",
+      "T3": "DSP",
+      "T4": "DSP",
+      "T5": "DSP",
+      "T6": "DSP"
+    },
+    "latency_ms": 13.636,
+    "cost": 25.0,
+    "energy_mj": 12.475,
+    "power_w": 0.915,
+    "fps": 73.34,
+    "logic": 0.0,
+    "feasible": true
+  },
+  "rec_scores_equal": {
+    "design_0244": 0.283,
+    "design_0250": 0.731,
+    "design_0252": 0.795,
+    "design_0262": 0.731,
+    "design_0264": 0.795,
+    "design_0304": 0.712,
+    "design_0316": 0.712,
+    "design_0412": 0.798,
+    "design_0424": 0.798,
+    "design_0460": 0.768,
+    "design_0466": 0.5,
+    "design_0478": 0.5
+  },
+  "all_sw": {
+    "id": "design_0001",
+    "bindings": {
+      "T1": "CPU",
+      "T2": "CPU",
+      "T3": "CPU",
+      "T4": "CPU",
+      "T5": "CPU",
+      "T6": "CPU"
+    },
+    "latency_ms": 24.5,
+    "cost": 10.0,
+    "energy_mj": 32.555,
+    "power_w": 1.329,
+    "fps": 40.82,
+    "logic": 0.0,
+    "feasible": false
+  },
+  "fastest_any": {
+    "id": "design_0486",
+    "bindings": {
+      "T1": "FPGA",
+      "T2": "FPGA",
+      "T3": "FPGA",
+      "T4": "FPGA",
+      "T5": "FPGA",
+      "T6": "DSP"
+    },
+    "latency_ms": 9.254,
+    "cost": 55.0,
+    "energy_mj": 9.97,
+    "power_w": 1.077,
+    "fps": 108.06,
+    "logic": 12500.0,
+    "feasible": false
+  },
+  "strategy_comparison": {
+    "Random": [
+      {
+        "budget": 20,
+        "hv_mean": 0.8037613574647618,
+        "hv_min": 0.666351458653153,
+        "hv_max": 0.9401057316969961,
+        "recall_mean": 0.075,
+        "evals_mean": 20.0,
+        "evals_max": 20
+      },
+      {
+        "budget": 40,
+        "hv_mean": 0.8758255638446849,
+        "hv_min": 0.7952180989121356,
+        "hv_max": 0.954983719948475,
+        "recall_mean": 0.15,
+        "evals_mean": 40.0,
+        "evals_max": 40
+      },
+      {
+        "budget": 60,
+        "hv_mean": 0.901352168219575,
+        "hv_min": 0.7952180989121356,
+        "hv_max": 0.9593184215563071,
+        "recall_mean": 0.25,
+        "evals_mean": 60.0,
+        "evals_max": 60
+      },
+      {
+        "budget": 100,
+        "hv_mean": 0.9037419080625015,
+        "hv_min": 0.7952180989121356,
+        "hv_max": 0.9648269926678751,
+        "recall_mean": 0.375,
+        "evals_mean": 100.0,
+        "evals_max": 100
+      },
+      {
+        "budget": 150,
+        "hv_mean": 0.9225029273989991,
+        "hv_min": 0.8577702662382772,
+        "hv_max": 0.9648269926678751,
+        "recall_mean": 0.4,
+        "evals_mean": 150.0,
+        "evals_max": 150
+      }
+    ],
+    "Greedy": [
+      {
+        "budget": 20,
+        "hv_mean": 0.514544995935493,
+        "hv_min": 0.514544995935493,
+        "hv_max": 0.514544995935493,
+        "recall_mean": 0.0,
+        "evals_mean": 20.0,
+        "evals_max": 20
+      },
+      {
+        "budget": 40,
+        "hv_mean": 0.824046460040462,
+        "hv_min": 0.824046460040462,
+        "hv_max": 0.824046460040462,
+        "recall_mean": 0.0,
+        "evals_mean": 40.0,
+        "evals_max": 40
+      },
+      {
+        "budget": 60,
+        "hv_mean": 0.9503578771648261,
+        "hv_min": 0.950357877164826,
+        "hv_max": 0.950357877164826,
+        "recall_mean": 0.375,
+        "evals_mean": 60.0,
+        "evals_max": 60
+      },
+      {
+        "budget": 100,
+        "hv_mean": 0.9506341521987804,
+        "hv_min": 0.950357877164826,
+        "hv_max": 0.9510485647497123,
+        "recall_mean": 0.425,
+        "evals_mean": 100.0,
+        "evals_max": 100
+      },
+      {
+        "budget": 150,
+        "hv_mean": 0.9731458849113912,
+        "hv_min": 0.9510485647497123,
+        "hv_max": 0.9958860720144298,
+        "recall_mean": 0.525,
+        "evals_mean": 150.0,
+        "evals_max": 150
+      }
+    ],
+    "NSGA-II": [
+      {
+        "budget": 20,
+        "hv_mean": 0.7787647907099768,
+        "hv_min": 0.7075576813789008,
+        "hv_max": 0.9314686368162965,
+        "recall_mean": 0.05,
+        "evals_mean": 18.2,
+        "evals_max": 20
+      },
+      {
+        "budget": 40,
+        "hv_mean": 0.8619424569212345,
+        "hv_min": 0.7419147309420343,
+        "hv_max": 0.9487966738026372,
+        "recall_mean": 0.125,
+        "evals_mean": 31.8,
+        "evals_max": 36
+      },
+      {
+        "budget": 60,
+        "hv_mean": 0.8790357200068281,
+        "hv_min": 0.7419147309420343,
+        "hv_max": 0.9861451090224194,
+        "recall_mean": 0.2,
+        "evals_mean": 42.4,
+        "evals_max": 50
+      },
+      {
+        "budget": 100,
+        "hv_mean": 0.9627705283773377,
+        "hv_min": 0.9477681918062447,
+        "hv_max": 1.0,
+        "recall_mean": 0.45,
+        "evals_mean": 58.2,
+        "evals_max": 65
+      },
+      {
+        "budget": 150,
+        "hv_mean": 0.976660023735555,
+        "hv_min": 0.950357877164826,
+        "hv_max": 1.0,
+        "recall_mean": 0.525,
+        "evals_mean": 74.6,
+        "evals_max": 85
+      }
+    ]
+  },
+  "bw_sensitivity": [
+    {
+      "bw": 25,
+      "sw_ms": 24.5,
+      "best_ms": 24.5,
+      "best_bind": {
+        "T1": "CPU",
+        "T2": "CPU",
+        "T3": "CPU",
+        "T4": "CPU",
+        "T5": "CPU",
+        "T6": "CPU"
+      },
+      "n_feasible": 0,
+      "n_hw_tasks": 0
+    },
+    {
+      "bw": 50,
+      "sw_ms": 24.5,
+      "best_ms": 24.388,
+      "best_bind": {
+        "T1": "DSP",
+        "T2": "DSP",
+        "T3": "DSP",
+        "T4": "DSP",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "n_feasible": 0,
+      "n_hw_tasks": 6
+    },
+    {
+      "bw": 100,
+      "sw_ms": 24.5,
+      "best_ms": 18.244,
+      "best_bind": {
+        "T1": "DSP",
+        "T2": "DSP",
+        "T3": "DSP",
+        "T4": "DSP",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "n_feasible": 0,
+      "n_hw_tasks": 6
+    },
+    {
+      "bw": 200,
+      "sw_ms": 24.5,
+      "best_ms": 13.058,
+      "best_bind": {
+        "T1": "FPGA",
+        "T2": "FPGA",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "n_feasible": 29,
+      "n_hw_tasks": 6
+    },
+    {
+      "bw": 400,
+      "sw_ms": 24.5,
+      "best_ms": 10.754,
+      "best_bind": {
+        "T1": "FPGA",
+        "T2": "FPGA",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "n_feasible": 179,
+      "n_hw_tasks": 6
+    },
+    {
+      "bw": 800,
+      "sw_ms": 24.5,
+      "best_ms": 9.601999999999999,
+      "best_bind": {
+        "T1": "FPGA",
+        "T2": "FPGA",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "n_feasible": 285,
+      "n_hw_tasks": 6
+    },
+    {
+      "bw": 1600,
+      "sw_ms": 24.5,
+      "best_ms": 9.026,
+      "best_bind": {
+        "T1": "FPGA",
+        "T2": "FPGA",
+        "T3": "DSP",
+        "T4": "FPGA",
+        "T5": "DSP",
+        "T6": "DSP"
+      },
+      "n_feasible": 325,
+      "n_hw_tasks": 6
+    }
+  ]
+}
